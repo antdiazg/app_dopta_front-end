@@ -1,0 +1,7 @@
+{
+  "name": "app-dopta",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
