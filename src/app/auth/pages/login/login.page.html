@@ -1,16 +1,11 @@
-
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar >
-      <div class="container flex mt-20 items-center">
+<!-- Diseño pagina web Movil -->
+<ion-content *ngIf="isMobilView; else desktopView" [fullscreen]="true">
+  <div class="container flex mt-20 items-center">
       <img src="../../../../assets/icon/Logo_AppDopta.jpeg" alt="Logo App Dopta" class="h-20 w-20 ml-8">
       <ion-title size="large" class="text-4xl text-gray-600">AppDopta</ion-title>
       </div>
-    </ion-toolbar>
-  </ion-header>
   <div class="container-buttons">
-    <div class="container-fb flex ml-11 mt-4 items-center justify-items-center">
+    <div class="container-fb flex ml-11 mt-4  ">
       <a href="#" class="flex items-center justify-center w-72 px-4 py-2 mt-2 space-x-4 text-sm text-center bg-white text-blue-500 transition-colors duration-200 transform border rounded-3xl dark:text-gray-300 dark:border-gray-300 hover:bg-gray-600 dark:hover:bg-gray-700">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
             <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
@@ -19,7 +14,7 @@
       </a>
     </div>
 
-    <div class="container-fb flex ml-11 items-center justify-items-center">
+    <div class="container-apple flex ml-11  ">
       <a href="#" class="flex items-center justify-center w-72 px-1 py-2 mt-2 space-x-3 text-sm text-center bg-white text-black transition-colors duration-200 transform border rounded-3xl dark:text-gray-300 dark:border-gray-300 hover:bg-gray-600 dark:hover:bg-gray-700">
         <svg viewBox="0 0 384 512" width="20" height="20" fill="currentColor" >
             <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
@@ -28,7 +23,7 @@
       </a>
     </div>
 
-    <div class="container-fb flex ml-11 items-center justify-items-center">
+    <div class="container-google flex ml-11 ">
       <a href="#" class="flex items-center justify-center w-72 px-4 py-2 mt-2 space-x-3 text-sm text-center bg-white text-blue-500 transition-colors duration-200 transform border rounded-3xl dark:text-gray-300 dark:border-gray-300 hover:bg-gray-600 dark:hover:bg-gray-700">
         <img class="w-5 h-5" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
         <span class="text-sm text-gray-700 dark:text-gray-200">Continuar con Google</span>
@@ -69,6 +64,72 @@
       <a  href='registro'  class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Crear una cuenta</a>
     </p>
   </div>
-
-
 </ion-content>
+
+
+<!-- Diseño pagina web Escritorio -->
+<ng-template #desktopView>
+  <ion-content>
+      <div class="container mx-auto px-4 py-8">
+      <div class="flex justify-center items-center">
+        <img src="../../../../assets/icon/Logo_AppDopta.jpeg" alt="Logo App Dopta" class="h-20 w-20">
+        <h1 class="text-4xl text-gray-600 ml-4">AppDopta</h1>
+      </div>
+
+
+
+
+    <div class="mt-8 max-w-md mx-auto">
+      <form [formGroup]="formularioLogin" class="space-y-6">
+      <h2 class="text-4xl font-bold">¡Bienvenido!</h2>
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+          <input formControlName="correo" id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 mt-1">
+        </div>
+        <div>
+          <div class="flex justify-between">
+            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+            <a href="#" class="text-indigo-600 hover:text-indigo-500 text-sm font-semibold">¿Olvidaste tu contraseña?</a>
+          </div>
+          <input formControlName="password" id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-gray-300 shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 mt-1">
+        </div>
+        <div>
+          <button type="submit" class="w-full py-3 bg-black text-white rounded-full shadow-md hover:bg-indigo-700 transition duration-300">
+            Iniciar Sesión
+          </button>
+        </div>
+      </form>
+
+    </div>
+    <hr class="mt-8">
+    <div class="buttons-companys grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+        <div class="container-fb flex ml-11   ">
+          <a href="#" class="flex items-center justify-center w-16 h-16  text-sm text-center bg-white text-blue-500 transition-colors duration-200 transform border rounded-full dark:text-gray-300 dark:border-gray-300 hover:bg-gray-600 dark:hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+            </svg>
+          </a>
+        </div>
+        <div class="container-apple flex ml-11  ">
+          <a href="#" class="flex items-center justify-center w-16 h-16  text-sm text-center bg-white text-black transition-colors duration-200 transform border rounded-full dark:text-gray-300 dark:border-gray-300 hover:bg-gray-600 dark:hover:bg-gray-700">
+            <svg viewBox="0 0 384 512" width="40" height="40" fill="currentColor" >
+                <path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+            </svg>
+          </a>
+        </div>
+        <div class="container-google flex ml-11 ">
+      <a href="#" class="flex items-center justify-center w-16 h-16  text-sm text-center bg-white text-black transition-colors duration-200 transform border rounded-full dark:text-gray-300 dark:border-gray-300 hover:bg-gray-600 dark:hover:bg-gray-700">
+        <img class="w-10 h-10" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
+      </a>
+    </div>
+      </div>
+    <div class="container-member">
+      <p class="mt-8 text-center text-sm text-gray-500">
+        ¿No eres miembro? |
+        <a href="registro" class="text-indigo-600 hover:text-indigo-500 font-semibold">Crear una cuenta</a>
+      </p>
+    </div>
+  </div>
+</ion-content>
+
+</ng-template>

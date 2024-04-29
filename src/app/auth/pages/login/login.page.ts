@@ -31,9 +31,10 @@ import { RegistroPage } from '../registro/registro.page';
     RegistroPage
     ]
 })
-export class LoginPage  {
+export class LoginPage implements OnInit {
 
-  formularioLogin: FormGroup;
+  formularioLogin : FormGroup;
+  isMobilView!     : boolean;
 
   constructor(public fb: FormBuilder) {
     this.formularioLogin = this.fb.group({
@@ -41,8 +42,22 @@ export class LoginPage  {
       'password': new FormControl("",Validators.required),
 
     })
+
   }
 
+  ngOnInit(): void {
+      this.checkScreenWidth();
+      window.addEventListener('resize', () => {
+        this.checkScreenWidth();
+      });
+  }
 
+  checkScreenWidth(){
+    if (window.innerWidth <= 768) {
+      this.isMobilView = true;
+    } else{
+      this.isMobilView = false;
+    }
+  }
 
 }
