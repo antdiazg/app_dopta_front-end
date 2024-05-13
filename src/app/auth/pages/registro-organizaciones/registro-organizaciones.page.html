@@ -190,14 +190,6 @@
         >Inicia sesión</a
       >
     </p>
-    <p class="mt-10 text-center text-sm text-pricipal-grey-400">
-      ¡Registra tu organización! |
-      <a
-        href="registro-organizaciones"
-        class="font-semibold leading-6 text-principal-blue-400 hover:text-principal-blue-600"
-        >Registro Organizaciones</a
-      >
-    </p>
   </div>
   </div>
 
@@ -222,49 +214,16 @@
 
       <div class="mt-5 h-screen container-registro mx-auto my-auto">
         <div class="max-w-md mx-auto">
-        <form [formGroup]="formularioRegistro" class="space-y-1">
-          <h2 class="text-4xl text-principal-grey-700 font-bold mb-0 pb-0">¡Crea tu cuenta!</h2>
+        <form [formGroup]="formularioRegistro" class="space-y-6">
+          <h2 class="text-4xl text-principal-grey-700 font-bold mb-0 pb-0">¡Registra tu organización!</h2>
           <p class="text-pricipal-grey-400 mt-0 pt-0">¡Es gratis!</p>
-          <div>
-            <label
-              for="nombre"
-              class="block text-sm font-medium leading-6 text-principal-blue-400"
-              >Nombre</label
-            >
-            <input
-              formControlName="nombre"
-              id="nombre"
-              name="nombre"
-              type="text"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
-
-          <div>
-            <div class="flex justify-between">
-              <label
-                for="apellido"
-                class="block text-sm font-medium leading-6 text-principal-blue-400"
-                >Apellido</label
-              >
-            </div>
-            <input
-              formControlName="apellido"
-              id="apellido"
-              name="apellido"
-              type="text"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
 
           <div>
             <div class="flex justify-between">
               <label
                 for="username"
                 class="block text-sm font-medium leading-6 text-principal-blue-400"
-                >Nombre de usuario</label
+                >Nombre de la organización</label
               >
             </div>
             <input
@@ -272,24 +231,6 @@
               id="username"
               name="username"
               type="text"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
-
-          <div>
-            <div class="flex justify-between">
-              <label
-                for="fechaNacimiento"
-                class="block text-sm font-medium leading-6 text-principal-blue-400"
-                >Fecha de nacimiento</label
-              >
-            </div>
-            <input
-              formControlName="fechaNacimiento"
-              id="fechaNacimiento"
-              name="fechaNacimiento"
-              type="date"
               required
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
             />
@@ -307,6 +248,23 @@
               name="email"
               type="email"
               autocomplete="email"
+              required
+              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
+            />
+          </div>
+
+          <div>
+            <label
+              for="telefono"
+              class="block text-sm font-medium leading-6 text-principal-blue-400"
+              >Teléfono</label
+            >
+            <input
+              formControlName="telefono"
+              id="telefono"
+              name="telefono"
+              type="text"
+              autocomplete="telefono"
               required
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
             />
@@ -396,13 +354,6 @@
             class="text-principal-blue-400 hover:text-principal-blue-600 font-semibold"
             >Inicio Sesión</a
           >
-        </p>
-        <p class="mt-10 text-center text-sm text-pricipal-grey-400">
-          ¡Registra tu organización! |
-          <a
-            href="registro-organizaciones"
-            class="font-semibold leading-6 text-principal-blue-400 hover:text-principal-blue-600"
-          >Registro Organizaciones</a>
         </p>
       </div>
     </div>

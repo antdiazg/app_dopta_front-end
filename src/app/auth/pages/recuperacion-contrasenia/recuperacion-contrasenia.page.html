@@ -76,11 +76,11 @@
       action="#"
       method="POST"
     >
-      <div>
+      <div class="flex flex-col justify-center items-center">
         <label
           for="email"
-          class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-          >Email</label
+          class="block text-sm font-medium leading-6 text-principal-blue-400"
+          >Ingresa tu correo para recuperar tú contraseña</label
         >
         <div class="mt-2">
           <input
@@ -93,44 +93,16 @@
             class="block w-72 pl-2 rounded-md py-1.5 text-principal-grey-700 shadow-sm ring-1 ring-inset ring-pricipal-grey-400 placeholder:text-principal-grey-400 focus:ring-2 focus:ring-inset focus:ring-principal-grey-700 sm:text-sm sm:leading-6"
           />
         </div>
-      </div>
-
-      <div>
-        <div class="flex items-center justify-between">
-          <label
-            for="password"
-            class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-            >Contraseña</label
+        <div class="mt-8">
+          <button
+            type="submit"
+            class="flex w-72 justify-center rounded-3xl bg-principal-blue-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-principal-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-principal-blue-600"
           >
-          <div class="text-sm">
-            <a
-              href="recuperacion-contrasenia"
-              class="font-semibold text-pricipal-grey-400 hover:text-principal-grey-700 mr-2"
-              >¿Olvidaste tu contraseña?</a
-            >
-          </div>
-        </div>
-        <div class="mt-2">
-          <input
-            formControlName="password"
-            id="password"
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            required
-            class="block w-72 pl-2 rounded-md py-1.5 text-principal-grey-700 shadow-sm ring-1 ring-inset ring-pricipal-grey-400 placeholder:text-principal-grey-400 focus:ring-2 focus:ring-inset focus:ring-principal-grey-700 sm:text-sm sm:leading-6"
-          />
+            Recuperar Contraseña
+          </button>
         </div>
       </div>
 
-      <div class="container-fb flex items-center justify-items-center">
-        <button
-          type="submit"
-          class="flex w-72 justify-center rounded-3xl bg-principal-blue-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-principal-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-principal-blue-600"
-        >
-          Iniciar Sesión
-        </button>
-      </div>
     </form>
 
     <hr class="mt-14 text-pricipal-grey-400">
@@ -168,12 +140,12 @@
       <div class="container-inicio-sesion mx-auto my-auto">
         <div class="mt-8 max-w-md mx-auto">
         <form [formGroup]="formularioLogin" class="space-y-6">
-          <h2 class="text-4xl font-bold">¡Bienvenido!</h2>
+          <h2 class="text-4xl text-principal-grey-700 font-bold">¿Olvidaste tu contraseña?</h2>
           <div>
             <label
               for="email"
-              class="block text-sm font-medium leading-6 text-principal-blue-400"
-              >Email</label
+              class="block font-medium leading-6 text-principal-blue-400"
+              >Ingresa tu correo electrónico, para recuperar tú contraseña</label
             >
             <input
               formControlName="correo"
@@ -185,37 +157,16 @@
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700 mt-1"
             />
           </div>
-          <div>
-            <div class="flex justify-between">
-              <label
-                for="password"
-                class="block text-sm font-medium leading-6 text-principal-blue-400"
-                >Contraseña</label
-              >
-              <a
-                href="recuperacion-contrasenia"
-                class="text-pricipal-grey-400 hover:text-principal-grey-700 text-sm font-semibold"
-                >¿Olvidaste tu contraseña?</a
-              >
-            </div>
-            <input
-              formControlName="password"
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="current-password"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700 mt-1"
-            />
-          </div>
+
           <div>
             <button
               type="submit"
               class="w-full py-3 bg-black text-white rounded-full shadow-md hover:bg-pricipal-grey-400 transition duration-300"
             >
-              Iniciar Sesión
+              Recuperar Contraseña
             </button>
           </div>
+
         </form>
       </div>
 
