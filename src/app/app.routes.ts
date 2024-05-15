@@ -22,4 +22,8 @@ export const routes: Routes = [
     path: 'recuperacion-contrasenia',
     loadComponent: () => import('./auth/pages/recuperacion-contrasenia/recuperacion-contrasenia.page').then( m => m.RecuperacionContraseniaPage)
   },
+  {
+    path: 'index',
+    loadComponent: () => import('./dashboard/pages/index/index.page').then( m => m.IndexPage)
+  },
 ];

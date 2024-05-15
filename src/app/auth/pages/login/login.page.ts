@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
   private fb: FormBuilder             = inject( FormBuilder );
   private authService: AuthService    = inject( AuthService );
 
-  public dashboardIndex: string = ''; // TODO: crear pagina index con navegador para los usuarios guest.
+  public dashboardIndex: string = '/index'; // TODO: crear pagina index con navegador para los usuarios guest.
   public status                 = computed( () => this.authService.authStatus() ); // TODO: debo arreglar el auth.service
   public authStatus             = computed( () => AuthStatus.authenticated );
 
@@ -75,6 +75,8 @@ export class LoginPage implements OnInit {
       })
   }
 
+
+  //! de aqui para abajo es funcionalidad del cambio de tamaño de la pantalla.
   ngOnInit(): void {
       this.checkScreenWidth();
       window.addEventListener('resize', () => {
