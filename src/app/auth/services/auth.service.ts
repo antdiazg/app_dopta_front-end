@@ -32,9 +32,9 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  login(email: string, password: string): Observable<void> {
+  login(correo: string, password: string): Observable<void> {
     const url = `${this.baseUrl}/auth/login`;
-    const body = { email: email, password: password };
+    const body = { correo: correo, password: password };
 
     return this.http.post<LoginResponse>(url, body)
       .pipe(

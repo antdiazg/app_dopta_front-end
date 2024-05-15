@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonLabel, IonItem, IonInput, IonRouterOutlet } from '@ionic/angular/standalone';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,6 +9,10 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { RegistroPage } from '../registro/registro.page';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { AuthStatus } from '../../enums/auth-status.enum';
+import { swalCustomError } from 'src/app/shared/helpers/swal-custom.helper';
 
 @Component({
   selector: 'app-login',
@@ -33,16 +37,42 @@ import { RegistroPage } from '../registro/registro.page';
 })
 export class LoginPage implements OnInit {
 
-  formularioLogin : FormGroup;
+  private router: Router              = inject( Router );
+  private fb: FormBuilder             = inject( FormBuilder );
+  private authService: AuthService    = inject( AuthService );
+
+  public dashboardIndex: string = ''; // TODO: crear pagina index con navegador para los usuarios guest.
+  public status                 = computed( () => this.authService.authStatus() ); // TODO: debo arreglar el auth.service
+  public authStatus             = computed( () => AuthStatus.authenticated );
+
+
   isMobilView!     : boolean;
 
-  constructor(public fb: FormBuilder) {
-    this.formularioLogin = this.fb.group({
-      'correo': new FormControl("",Validators.required),
-      'password': new FormControl("",Validators.required),
 
-    })
+    formularioLogin: FormGroup = this.fb.group({
+      correo: ["",[Validators.required]],
+      password: ["",[Validators.required]],
 
+    });
+
+
+  login(): void{
+    if( this.formularioLogin.invalid) {
+      this.formularioLogin.markAllAsTouched();
+      return
+
+    };
+
+    const { correo, password } = this.formularioLogin.value;
+
+
+    this.authService.login( correo, password )
+      .subscribe({
+        next : () => this.router.navigateByUrl( this.dashboardIndex ),
+        error: ( error ) => {
+          swalCustomError( 'Error', error );
+        }
+      })
   }
 
   ngOnInit(): void {

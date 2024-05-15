@@ -167,7 +167,9 @@
 
       <div class="container-inicio-sesion mx-auto my-auto">
         <div class="mt-8 max-w-md mx-auto">
-        <form [formGroup]="formularioLogin" class="space-y-6">
+        <form
+        class="space-y-6">
+        [formGroup]="formularioLogin"
           <h2 class="text-4xl font-bold">¡Bienvenido!</h2>
           <div>
             <label
@@ -177,8 +179,8 @@
             >
             <input
               formControlName="correo"
-              id="email"
-              name="email"
+              id="correo"
+              name="correo"
               type="email"
               autocomplete="email"
               required
