@@ -222,7 +222,10 @@
 
       <div class="mt-5 h-screen container-registro mx-auto my-auto">
         <div class="max-w-md mx-auto">
-        <form [formGroup]="formularioRegistro" (ngSubmit)="onSubmit()" class="space-y-1">
+        <form
+        class="space-y-1"
+        [formGroup]="formularioRegistro"
+        (ngSubmit)="onSubmit()" >
           <h2 class="text-4xl text-principal-grey-700 font-bold mb-0 pb-0">¡Crea tu cuenta!</h2>
           <p class="text-pricipal-grey-400 mt-0 pt-0">¡Es gratis!</p>
           <div>
@@ -271,6 +274,24 @@
               formControlName="username"
               id="username"
               name="username"
+              type="text"
+              required
+              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
+            />
+          </div>
+
+          <div>
+            <div class="flex justify-between">
+              <label
+                for="telefono"
+                class="block text-sm font-medium leading-6 text-principal-blue-400"
+                >Teléfono</label
+              >
+            </div>
+            <input
+              formControlName="telefono"
+              id="telefono"
+              name="telefono"
               type="text"
               required
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
@@ -407,6 +428,6 @@
       </div>
     </div>
       </div>
-
   </ion-content>
 </ng-template>
+

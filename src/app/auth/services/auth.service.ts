@@ -20,11 +20,15 @@ export class AuthService {
   return this.http.post<LoginResponse>(url, body, { headers });
 }
 
-  register(username: string, password: string, email: string , telefono: number, direccion: string, nombre: string, apellido: string): Observable<RegisterResponse> {
-  const url = `${this.baseUrl}personas/registro/`; // Replace with your Django registration endpoint
-  const body = { username , password , email, telefono, direccion, nombre, apellido };
-  const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  return this.http.post<RegisterResponse>(url, body, { headers });
+//   register(username: string, password: string, email: string , telefono: number, direccion: string, nombre: string, apellido: string): Observable<RegisterResponse> {
+//   const url = `${this.baseUrl}personas/registro/`; // Replace with your Django registration endpoint
+//   const body = { username , password , email, telefono, direccion, nombre, apellido };
+//   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+//   return this.http.post<RegisterResponse>(url, body, { headers });
+// }
+
+addUser( user : User): Observable<User> {
+  return this.http.post<User>(`${ this.baseUrl }personas/registro/`, user);
 }
 
 }
