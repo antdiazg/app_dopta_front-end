@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import {
   FormGroup,
-  FormControl,
+
   Validators,
   FormBuilder,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { LoginPage } from '../login/login.page';
 
 @Component({
   selector: 'app-registro',
@@ -15,35 +18,59 @@ import {
   styleUrls: ['./registro.page.css'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,
-    ReactiveFormsModule,]
+    ReactiveFormsModule, LoginPage]
 })
 export class RegistroPage implements OnInit{
 
-  formularioRegistro : FormGroup;
+  formularioRegistro! : FormGroup;
+  registroError: string = '';
   isMobilView!     : boolean;
 
-  constructor(public fb: FormBuilder) {
-    this.formularioRegistro = this.fb.group({
-      'username': new FormControl("",Validators.required),
-      'password': new FormControl("",Validators.required),
-      'confirmPassword': new FormControl("",Validators.required),
-      'email': new FormControl("",Validators.required),
-      'telefono': new FormControl("",Validators.required),
-      'direccion': new FormControl("",Validators.required),
-      'nombre': new FormControl("",Validators.required),
-      'apellido': new FormControl("",Validators.required),
-      'fechaNacimiento': new FormControl("",Validators.required),
-    }, {
-      validator: this.checkPasswords
-    })
-
-  }
+  constructor(
+    private fb: FormBuilder,
+    @Inject(Router) private router: Router,
+    private authService: AuthService
+    ) {}
 
 
   ngOnInit(): void {
+    this.formularioRegistro = this.fb.group({
+      username: ['',Validators.required],
+      password: ['',Validators.required],
+      // confirmPassword: ['',Validators.required],
+      email: ['',Validators.required],
+      telefono: ['',Validators.required],
+      direccion: ['',Validators.required],
+      nombre: ['',Validators.required],
+      apellido: ['',Validators.required],
+      // 'fechaNacimiento': new FormControl("",Validators.required), //TODO: hay que agregarlo en el backend o hacer validacion
+    })
+
+
       this.checkScreenWidth();
       window.addEventListener('resize', () => {
         this.checkScreenWidth();
+      });
+  }
+
+  onSubmit(): void{
+    if (this.formularioRegistro.invalid){
+      return
+    }
+
+    const { username, password, email, telefono, direccion, nombre, apellido } = this.formularioRegistro.value;
+
+    this.authService.register( username, password, email, telefono, direccion, nombre, apellido)
+      .subscribe({
+        next: (registroResponse) => {
+          console.log('Registro Successful!', registroResponse);
+          this.router.navigate(['/login']);
+          this.formularioRegistro.reset();
+        },
+        error: (error) => {
+          console.error('Registro error:', error);
+
+        }
       });
   }
 

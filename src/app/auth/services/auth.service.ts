@@ -1,83 +1,30 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { environments } from '../../../environments/environment';
-import { CheckTokenResponse, LoginResponse, User } from '../interface/index';
-import { AuthStatus } from '../enums/auth-status.enum';
+import { Injectable} from '@angular/core';
+import { LoginResponse, User } from '../interface';
+import { Observable } from 'rxjs';
+import { RegisterResponse } from '../interface/register-response.interface';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly baseUrl: string = environments.baseUrl;
-  private http: HttpClient         = inject( HttpClient );
+  private baseUrl = 'http://127.0.0.1:8000/';
+  constructor(private http: HttpClient){}
 
-  private _currentUser  = signal<User | null>( null );
-  private _authStatus   = signal<AuthStatus>( AuthStatus.checking );
+  login(email: string, password: string): Observable<LoginResponse> {
+  const url = `${this.baseUrl}login/`;
+  const body = { email, password };
+  const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  return this.http.post<LoginResponse>(url, body, { headers });
+}
 
-  public currentUser  = computed<User |  null>( () => this._currentUser() );
-  public authStatus   = computed<AuthStatus>( () => this._authStatus() );
+  register(username: string, password: string, email: string , telefono: number, direccion: string, nombre: string, apellido: string): Observable<RegisterResponse> {
+  const url = `${this.baseUrl}personas/registro/`; // Replace with your Django registration endpoint
+  const body = { username , password , email, telefono, direccion, nombre, apellido };
+  const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  return this.http.post<RegisterResponse>(url, body, { headers });
+}
 
-
-
-
-  private setAuthentication(user: User, token: string): boolean {
-    this._authStatus.set( AuthStatus.authenticated );
-    this._currentUser.set( user );
-    localStorage.setItem('token', token);
-    return true;
-  }
-
-  constructor() {
-    this.checkAuthStatus().subscribe();
-  }
-
-  login(correo: string, password: string): Observable<void> {
-    const url = `${this.baseUrl}/login`;
-    const body = { correo: correo, password: password };
-
-    return this.http.post<LoginResponse>(url, body)
-      .pipe(
-        map(({ user, token }) => {
-          this.setAuthentication(user, token);
-        }),
-        catchError(error => throwError( () => error.error.message)),
-
-      );
-  }
-
-  checkAuthStatus(): Observable<boolean> {
-    const url: string = `${this.baseUrl}/check-token`;
-    const token: string | null = localStorage.getItem('token');
-    const headers: HttpHeaders = new HttpHeaders()
-      .set( 'Authorization', `Bearer ${ token }`);
-
-    if (!token) {
-      this.logout();
-      return of( false );
-    };
-
-    return this.http.get<CheckTokenResponse>(url, { headers: headers })
-      .pipe(
-        map(({ user, token }) => {
-          this.setAuthentication(user, token);
-          return true;
-
-        }),
-
-        catchError( () => {
-          this._authStatus.set( AuthStatus.notAuthenticated );
-
-          return of(false);
-        })
-      );
-  }
-
-  logout(): void {
-    localStorage.removeItem('token');
-    this._currentUser.set( null );
-    this._authStatus.set( AuthStatus.notAuthenticated );
-  }
 }

@@ -14,7 +14,7 @@
     <form
       [formGroup]="formularioRegistro"
       class="space-y-1"
-      action="#"
+      (ngSubmit)="onSubmit()"
       method="POST"
     >
       <div>
@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <div>
+      <!-- <div>
         <label
           for="fechaNacimiento"
           class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
@@ -87,7 +87,7 @@
             class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
-      </div>
+      </div> -->
 
       <div>
         <label
@@ -115,7 +115,7 @@
         >
         <div class="mt-1">
           <input
-            formControlName="correo"
+            formControlName="email"
             id="email"
             name="email"
             type="email"
@@ -222,7 +222,7 @@
 
       <div class="mt-5 h-screen container-registro mx-auto my-auto">
         <div class="max-w-md mx-auto">
-        <form [formGroup]="formularioRegistro" class="space-y-1">
+        <form [formGroup]="formularioRegistro" (ngSubmit)="onSubmit()" class="space-y-1">
           <h2 class="text-4xl text-principal-grey-700 font-bold mb-0 pb-0">¡Crea tu cuenta!</h2>
           <p class="text-pricipal-grey-400 mt-0 pt-0">¡Es gratis!</p>
           <div>
@@ -277,7 +277,7 @@
             />
           </div>
 
-          <div>
+          <!-- <div>
             <div class="flex justify-between">
               <label
                 for="fechaNacimiento"
@@ -293,7 +293,7 @@
               required
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
             />
-          </div>
+          </div> -->
 
           <div>
             <label
@@ -302,7 +302,7 @@
               >Email</label
             >
             <input
-              formControlName="correo"
+              formControlName="email"
               id="email"
               name="email"
               type="email"
@@ -319,7 +319,7 @@
               >Dirección</label
             >
             <input
-              formControlName="correo"
+              formControlName="direccion"
               id="direccion"
               name="direccion"
               type="text"
@@ -346,13 +346,13 @@
               required
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
             />
-            <div class="text-errors-red-300" *ngIf="formularioRegistro.get('password')!.errors">
+            <!-- <div class="text-errors-red-300" *ngIf="formularioRegistro.get('password')!.errors">
               La contraseña es requerida
-            </div>
+            </div> -->
 
           </div>
 
-          <div>
+          <!-- <div>
             <div class="flex justify-between">
               <label
                 for="confirm_password"
@@ -371,7 +371,7 @@
             <div class="text-errors-red-300" *ngIf="formularioRegistro.hasError('notSame')">
               La contraseña no coincide
             </div>
-          </div>
+          </div> -->
 
           <div>
             <button
