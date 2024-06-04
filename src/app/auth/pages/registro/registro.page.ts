@@ -5,7 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginPage } from '../login/login.page';
-import { User } from '../../interface';
+import { RegistroPersona } from '../../interface/register-response.interface';
 
 @Component({
   selector: 'app-registro',
@@ -18,7 +18,6 @@ import { User } from '../../interface';
 export class RegistroPage implements OnInit{
 
   public formularioRegistro = new FormGroup({
-      id: new FormControl<string>(''),
       username: new FormControl<string>('', { nonNullable: true}),
       password: new FormControl<string>('', { nonNullable: true}),
       // confirmPassword: new FormControl('', { nonNullable: true}),
@@ -27,8 +26,6 @@ export class RegistroPage implements OnInit{
       direccion: new FormControl<string>('', { nonNullable: true}),
       nombre: new FormControl<string>('', { nonNullable: true}),
       apellido: new FormControl<string>('', { nonNullable: true}),
-      isActive: new FormControl<boolean>(false),
-      isStaff: new FormControl<boolean>(false),
       // 'fechaNacimiento': new FormControl("",Validators.required), //TODO: hay que agregarlo en el backend o hacer validacion
   });
   registroError: string = '';
@@ -39,10 +36,18 @@ export class RegistroPage implements OnInit{
     private authService: AuthService
     ) {}
 
-  get currentUser(): User{
-    const user = this.formularioRegistro.value as User;
-
-    return user;
+  get currentPerson(): RegistroPersona{
+    return {
+    user: {
+      username: this.formularioRegistro.get('username')!.value!,
+      email: this.formularioRegistro.get('email')!.value!,
+      password: this.formularioRegistro.get('password')!.value!
+    },
+    telefono: this.formularioRegistro.get('telefono')!.value!,
+    direccion: this.formularioRegistro.get('direccion')!.value!,
+    nombre: this.formularioRegistro.get('nombre')!.value!,
+    apellido: this.formularioRegistro.get('apellido')!.value!
+  };
   }
 
 
@@ -69,20 +74,61 @@ export class RegistroPage implements OnInit{
   onSubmit(): void{
 
     if ( this.formularioRegistro.invalid) return;
+    console.log("Datos del formulario:", this.currentPerson);
+    // if ( this.currentPerson.user.email ){
+    //   console.log("Ya existe el usuario");
+    //   console.error("Usuario existe en la base de datos");
+    //   return;
+    // }
 
-    if ( this.currentUser.id ){
-      console.log("Ya existe el usuario");
-      console.error("Usuario existe en la base de datos");
-      return;
-    }
+    this.authService.addPerson( this.currentPerson )
+      .subscribe({
+        next: (RegisterResponse) => {
+          console.log('Registro successful!', RegisterResponse);
+          this.router.navigate(['/']);
+          this.formularioRegistro.reset();
+        },
+        error: (error) => {
+          console.error('Registro error', error);
+          this.registroError = 'Registro invalido.';
+        }
 
-    this.authService.addUser( this.currentUser )
-      .subscribe( user => {
-        console.log("Usuario creado en la base de datos!!");
       })
 
-
   }
+
+    // onSubmit(): void{
+
+  //   if ( this.formularioRegistro.invalid) return;
+  //   console.log("Datos del formulario:", this.currentPerson);
+
+  //   this.authService.personExists(this.currentPerson.user.email)
+  //     .subscribe({
+  //       next: exists => {
+  //         if ( exists ) {
+  //           console.log("Ya existe el usuario");
+  //           console.error("Usuario existe en la base de datos");
+  //           this.registroError = "Usuario ya existe en la base de datos";
+  //         }else {
+  //           this.authService.addPerson(this.currentPerson)
+  //             .subscribe({
+  //               next: persona => {
+  //                 console.log("Persona creada en la base de datos!!");
+  //                 this.router.navigate(['/login']);
+  //               },
+  //               error: err => {
+  //                 console.error("Error al crear la persona", err);
+  //                 this.registroError = 'Error al crear la persona';
+  //               }
+  //             });
+  //         }
+  //       },
+  //       error: err => {
+  //         console.error("Error al verificar el usuario", err);
+  //         this.registroError = 'Error al verificar el usuario';
+  //       }
+  //     });
+  // }
 
   checkScreenWidth(){
     if (window.innerWidth <= 768) {

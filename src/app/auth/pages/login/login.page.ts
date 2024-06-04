@@ -11,6 +11,7 @@ import {
 import { RegistroPage } from '../registro/registro.page';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { IonicModule } from '@ionic/angular';
 
 
 @Component({
@@ -31,6 +32,7 @@ import { AuthService } from '../../services/auth.service';
     IonButton,
     CommonModule,
     FormsModule,
+    IonicModule,
     ReactiveFormsModule,
     RegistroPage,
     ],
@@ -50,9 +52,6 @@ export class LoginPage implements OnInit {
   ){}
 
 
-
-
-  //! de aqui para abajo es funcionalidad del cambio de tamaño de la pantalla.
   ngOnInit(): void {
       this.formularioLogin = this.fb.group({
         email: ['', [Validators.required, Validators.email]],

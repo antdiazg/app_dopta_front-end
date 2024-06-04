@@ -1,0 +1,106 @@
+<div
+  class="fixed top-0 z-50 w-full border-b-2
+        shadow-md border-pricipal-grey-00 bg-pricipal-grey-400"
+>
+
+  <div class="px-3 py-2 lg:px-5 lg:pl-3">
+    <div class="flex items-center justify-between gap-2">
+      <div
+        class="flex items-center justify-center pl-1 rtl:justify-end"
+      >
+        <div class="customLG2:hidden block">
+          <i
+            class="fa-solid fa-bars fa-xl cursor-pointer pr-4 text-[#4A7729]
+                  sm:-translate-x-full translate-x-0"
+            (click)="toggleNav()"
+          >
+          </i>
+        </div>
+
+        <img
+          src="../../../../assets/icon/Logo_AppDopta.jpeg" class="size-10 rounded-lg"
+          alt="FlowBite Logo"
+        />
+
+
+      </div>
+      <div class="flex items-center relative">
+        <div class="flex items-center ms-3">
+          <div>
+            <button
+              type="button"
+              (click)="toggleProfileIcon()"
+              class="flex text-sm bg-principal-blue-400 rounded-full focus:ring-4
+                    focus:ring-principal-blue-600"
+            >
+              <span class="sr-only">Open user menu</span>
+              <div
+                class="size-10 rounded-full bg-pricipal-grey-400 text-center pt-[0.25rem]"
+              >
+                <span class="text-lg">N</span>
+              </div>
+
+            </button>
+
+          </div>
+
+          @if( isOpenProfile() ) {
+            <div
+              class="z-50 text-white font-roboto-mono font-bold mr-4 list-none divide-y
+                    rounded-lg shadow absolute w-64 px-4 py-2
+                    right-[0rem] top-[3.3rem] bg-pricipal-grey-400 divide-principal-grey-700"
+            >
+              <div class="py-3" role="none">
+                <p class="text-sm truncate px-2 text-white">Nicolás Espinoza</p>
+
+              </div>
+              <ul class="py-4" role="none">
+                <li class="rounded-lg py-2 my-2 grid grid-rows-2 gap-4">
+                  <span
+                    class="text-sm rounded-lg py-1 px-2 cursor-pointer hover:bg-principal-grey-700"
+                    (click)="toggleProfile()"
+                  >
+                    <i class="fa-solid fa-gear"></i>
+                    configuraciones
+                  </span>
+                  <span
+                    class="text-sm rounded-lg py-1 px-2 cursor-pointer hover:bg-principal-grey-700"
+                    (click)="onLogout()"
+                  >
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Cerrar Sesión
+                  </span>
+                </li>
+
+              </ul>
+
+            </div>
+
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div
+
+    class="fixed inset-0 flex flex-col space-y-4 p-4 bg-pricipal-grey-400
+          transform overflow-y-auto transition-transform font-roboto-mono
+          duration-200 ease-in-out lg:hidden h-[12rem]"
+  >
+    <div class="absolute top-left-0 ml-2 mt-2">
+      <button
+        (click)="toggleNav()"
+        type="button"
+        class="p-2 text-[#4A7729]">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+  </div>
+
+</div>
