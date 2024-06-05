@@ -75,7 +75,7 @@ export class LoginPage implements OnInit {
     .subscribe({
       next: (loginResponse) => {
         console.log('Login successful!', loginResponse);
-        this.router.navigate(['/index']); // Replace with your desired route
+        this.router.navigateByUrl('/'); // Replace with your desired route
         this.formularioLogin.reset(); // Reset form after successful login
       },
       error: (error) => {

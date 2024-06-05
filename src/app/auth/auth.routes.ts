@@ -6,13 +6,10 @@ import { RegistroPage } from './pages/registro/registro.page';
 
 export const routesAuth: Routes = [
 
-  {
-    path: '',
-    component: LoginPage,
-    children: [
-      { path: 'registro', component: RegistroPage},
-      { path: 'registro-organizaciones', component: RegistroOrganizacionesPage},
-      { path: 'recuperacion-contrasenia', component: RecuperacionContraseniaPage},
-    ]
-  }
+  { path: '', component: LoginPage,},
+  { path: 'registro', component: RegistroPage},
+  { path: 'registro-organizaciones', component: RegistroOrganizacionesPage},
+  { path: 'recuperacion-contrasenia', component: RecuperacionContraseniaPage},
+
+
 ]
