@@ -1,30 +1,34 @@
 <div
-  class="fixed top-0 z-50 w-full border-b-2
-        shadow-md border-pricipal-grey-00 bg-pricipal-grey-400"
+  class="fixed top-0 z-50 w-full border-b-1
+        shadow-md border-pricipal-grey-400 bg-white"
 >
 
-  <div class="px-3 py-2 lg:px-5 lg:pl-3">
+  <div class="px-3 py-4 lg:px-5 lg:pl-3">
     <div class="flex items-center justify-between gap-2">
-      <div
-        class="flex items-center justify-center pl-1 rtl:justify-end"
-      >
-        <div class="customLG2:hidden block">
-          <i
-            class="fa-solid fa-bars fa-xl cursor-pointer pr-4 text-[#4A7729]
-                  sm:-translate-x-full translate-x-0"
-            (click)="toggleNav()"
-          >
-          </i>
-        </div>
 
+      <div class="flex items-center justify-between ml-36">
         <img
+          class="flex ml-8"
           src="../../../../assets/icon/Logo_AppDopta.jpeg" class="size-10 rounded-lg"
           alt="FlowBite Logo"
         />
+        <div class="ml-8 flex items-center justify-between">
+          <h1 class="text-3xl font-bold">AppDopta</h1>
+          <h1 class="ml-4 text-3xl text-pricipal-grey-400">|</h1>
+        </div>
 
-
+        <div class="ml-8  flex items-center justify-between text-pricipal-grey-400 font-semibold">
+          <a href="dashboard/index" class="px-4 hover:text-principal-grey-700">Adoptar</a>
+          <a href="dashboard/eventos" class="px-4 hover:text-principal-grey-700">Eventos</a>
+          <a href="" class="px-4 hover:text-principal-grey-700">Favoritos</a>
+          <a href="" class="px-4 hover:text-principal-grey-700">Mapa de servicios</a>
+          <a href="" class="px-4 hover:text-principal-grey-700">Sobre nosotros</a>
+          <a href="" class="px-4 hover:text-principal-grey-700">Contacto</a>
+        </div>
       </div>
-      <div class="flex items-center relative">
+
+
+      <div class="flex items-center relative mr-36">
         <div class="flex items-center ms-3">
           <div>
             <button
@@ -48,7 +52,7 @@
             <div
               class="z-50 text-white font-roboto-mono font-bold mr-4 list-none divide-y
                     rounded-lg shadow absolute w-64 px-4 py-2
-                    right-[0rem] top-[3.3rem] bg-pricipal-grey-400 divide-principal-grey-700"
+                    right-[0rem] top-[3.3rem] bg-principal-blue-400 divide-principal-grey-700"
             >
               <div class="py-3" role="none">
                 <p class="text-sm truncate px-2 text-white">Nicolás Espinoza</p>
@@ -86,21 +90,5 @@
 
   </div>
 
-  <div
-
-    class="fixed inset-0 flex flex-col space-y-4 p-4 bg-pricipal-grey-400
-          transform overflow-y-auto transition-transform font-roboto-mono
-          duration-200 ease-in-out lg:hidden h-[12rem]"
-  >
-    <div class="absolute top-left-0 ml-2 mt-2">
-      <button
-        (click)="toggleNav()"
-        type="button"
-        class="p-2 text-[#4A7729]">
-        <i class="fa-solid fa-bars text-2xl"></i>
-      </button>
-    </div>
-
-  </div>
 
 </div>

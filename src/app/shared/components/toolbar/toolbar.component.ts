@@ -28,7 +28,7 @@ export class ToolbarComponent {
     this.isNavOpen.update( isNavOpen => isNavOpen = !isNavOpen );
 
   };
-
+//TODO: arreglar la redirección para modificar perfil (actualizar información)
   toggleProfile() {
     this.router.navigateByUrl( '/dashboard/configuraciones/perfilOrg' );
     this.toolBarService.toggleProfileIcon();
@@ -40,6 +40,7 @@ export class ToolbarComponent {
 
   };
 
+//TODO: arreglar funcionalidad de salir de sesión
   onLogout() {
     // this.authService.logout();
     this.toolBarService.toggleProfileIcon();
