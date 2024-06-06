@@ -44,6 +44,7 @@ export class LoginPage implements OnInit {
   formularioLogin!: FormGroup;
   loginError: string = '';
   isMobilView! :boolean;
+  private tokenKey = 'authToken';
 
   constructor(
     private fb: FormBuilder,

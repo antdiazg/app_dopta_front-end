@@ -85,7 +85,7 @@ export class RegistroPage implements OnInit{
       .subscribe({
         next: (RegisterResponse) => {
           console.log('Registro successful!', RegisterResponse);
-          this.router.navigate(['/']);
+          this.router.navigate(['/auth/login']);
           this.formularioRegistro.reset();
         },
         error: (error) => {

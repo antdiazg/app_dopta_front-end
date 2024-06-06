@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable} from '@angular/core';
-import { LoginResponse, User } from '../interface';
+import { LoginResponse } from '../interface';
 import { Observable } from 'rxjs';
-import { RegisterResponse, RegistroPersona } from '../interface/register-response.interface';
+import { RegistroPersona } from '../interface/register-response.interface';
 
 
 
@@ -10,6 +10,7 @@ import { RegisterResponse, RegistroPersona } from '../interface/register-respons
   providedIn: 'root'
 })
 export class AuthService {
+
   private baseUrl = 'http://127.0.0.1:8000/';
   constructor(private http: HttpClient){}
 
