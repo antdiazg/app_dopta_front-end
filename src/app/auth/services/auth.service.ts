@@ -52,6 +52,22 @@ login(email: string, password: string): Observable<LoginResponse> {
     );
 };
 
+getProfile(): Observable<any>{
+  const url = `${this.baseUrl}perfil/`;
+  const token = localStorage.getItem('token-jwt');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get<any>(url, { headers }).pipe(
+    tap(response => {
+      console.log('User profile:', response);
+    }),
+    catchError(error => {
+      console.error('Profile error:', error);
+      return throwError(() => error);
+
+    })
+  )
+}
+
 logout(){
   localStorage.removeItem('token-jwt');
 }

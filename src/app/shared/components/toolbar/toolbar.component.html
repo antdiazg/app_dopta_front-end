@@ -30,7 +30,7 @@
 
       <div class="flex items-center relative mr-36">
         <div class="flex items-center ms-3">
-          <div>
+          <div *ngIf="currentUser?.user?.username">
             <button
               type="button"
               (click)="toggleProfileIcon()"
@@ -41,7 +41,7 @@
               <div
                 class="size-10 rounded-full bg-pricipal-grey-400 text-center pt-[0.25rem]"
               >
-                <span class="text-lg">N</span>
+                <span class="text-lg">{{currentUser.user.username | slice:0:1 | titlecase}}</span> <!--TODO:AJUSTAR PARA QUE SE VEA FOTO DE PERFIL-->
               </div>
 
             </button>
@@ -55,7 +55,7 @@
                     right-[0rem] top-[3.3rem] bg-principal-blue-400 divide-principal-grey-700"
             >
               <div class="py-3" role="none">
-                <p class="text-sm truncate px-2 text-white">Nicolás Espinoza</p>
+                <p class="text-sm truncate px-2 text-white">{{currentUser.user.username | titlecase }}</p>
 
               </div>
               <ul class="py-4" role="none">

@@ -1,8 +1,16 @@
 
 export interface User {
-  username: string;
-  email: string;
-  password: string;
+  user: {
+        username: string;
+        email: string;
+        password: string;
+    },
+    telefono: number;
+    direccion: string;
+    nombre: string;
+    apellido: string;
+    imagen_perfil: string;
+    documento: string;
 }
 
 
