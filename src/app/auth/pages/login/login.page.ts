@@ -12,6 +12,7 @@ import { RegistroPage } from '../registro/registro.page';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { IonicModule } from '@ionic/angular';
+import { LoginResponse } from '../../interface/login-response.interface';
 
 
 @Component({
@@ -76,7 +77,8 @@ export class LoginPage implements OnInit {
     .subscribe({
       next: (loginResponse) => {
         console.log('Login successful!', {loginResponse});
-        // this.authService.setToken(loginResponse.token);
+        
+        //this.authService.setToken(loginResponse.token);
         this.router.navigateByUrl('/'); // Replace with your desired route
         this.formularioLogin.reset(); // Reset form after successful login
       },

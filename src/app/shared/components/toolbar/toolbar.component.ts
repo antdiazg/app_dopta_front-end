@@ -42,7 +42,7 @@ export class ToolbarComponent {
 
 //TODO: arreglar funcionalidad de salir de sesión
   onLogout() {
-    // this.authService.logout();
+    this.authService.logout();
     this.toolBarService.toggleProfileIcon();
 
   };
