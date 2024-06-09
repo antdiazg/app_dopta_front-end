@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable} from '@angular/core';
 import { LoginResponse } from '../interface';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { RegistroPersona } from '../interface/register-response.interface';
 
 
@@ -18,7 +18,21 @@ login(email: string, password: string): Observable<LoginResponse> {
   const url = `${this.baseUrl}login/`;
   const body = { email, password };
   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  return this.http.post<LoginResponse>(url, body, { headers });
+  return this.http.post<LoginResponse>(url, body, { headers }).pipe(
+    tap(response => {
+      if(response && response.token){
+        localStorage.setItem('authToken', response.token);
+      }
+    })
+  );
+}
+
+logout(){
+  localStorage.removeItem('authToken');
+}
+
+isAuthenticated(): boolean{
+  return !!localStorage.getItem('authToken');
 }
 
 addPerson( persona : RegistroPersona): Observable<RegistroPersona> {
@@ -39,5 +53,7 @@ passRecovery(email: string): Observable<string> {
     const body = { email: email };
     return this.http.post<string>(`${this.baseUrl}recuperar/`, body, { headers: headers });
   }
+
+
 
 }

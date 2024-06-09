@@ -75,7 +75,8 @@ export class LoginPage implements OnInit {
     this.authService.login(email, password) // Call AuthService login method
     .subscribe({
       next: (loginResponse) => {
-        console.log('Login successful!', loginResponse);
+        console.log('Login successful!', {loginResponse});
+        // this.authService.setToken(loginResponse.token);
         this.router.navigateByUrl('/'); // Replace with your desired route
         this.formularioLogin.reset(); // Reset form after successful login
       },
