@@ -1,6 +1,6 @@
 <div
   class="fixed top-0 z-50 w-full border-b-1
-        shadow-md border-pricipal-grey-400 bg-white"
+        shadow-md border-principal-grey-400 bg-white"
 >
 
   <div class="px-3 py-4 lg:px-5 lg:pl-3">
@@ -9,44 +9,56 @@
       <div class="flex items-center justify-between ml-36">
         <img
           class="flex ml-8"
-          src="../../../../assets/icon/Logo_AppDopta.jpeg" class="size-10 rounded-lg"
+          src="../../../../assets/icon/Logo_AppDopta.jpeg" class="size-20 rounded-lg"
           alt="FlowBite Logo"
         />
         <div class="ml-8 flex items-center justify-between">
           <h1 class="text-3xl font-bold">AppDopta</h1>
-          <h1 class="ml-4 text-3xl text-pricipal-grey-400">|</h1>
+          <p class="ml-4 text-3xl text-principal-grey-400">|</p>
         </div>
 
-        <div class="ml-8  flex items-center justify-between text-pricipal-grey-400 font-semibold">
-          <a href="dashboard/index" class="px-4 hover:text-principal-grey-700">Adoptar</a>
+        <div class="ml-8 flex items-center justify-between text-principal-grey-400 font-semibold">
+          <a href="dashboard/adoptar" class="px-4 hover:text-principal-grey-700">Adoptar</a>
           <a href="dashboard/eventos" class="px-4 hover:text-principal-grey-700">Eventos</a>
-          <a href="" class="px-4 hover:text-principal-grey-700">Favoritos</a>
-          <a href="" class="px-4 hover:text-principal-grey-700">Mapa de servicios</a>
-          <a href="" class="px-4 hover:text-principal-grey-700">Sobre nosotros</a>
-          <a href="" class="px-4 hover:text-principal-grey-700">Contacto</a>
+          <a href="dashboard/favoritos" class="px-4 hover:text-principal-grey-700">Favoritos</a>
+          <a href="dashboard/mapa-servicios" class="px-4 hover:text-principal-grey-700">Mapa de servicios</a>
+          <a href="dashboard/sobre-nosotros" class="px-4 hover:text-principal-grey-700">Sobre nosotros</a>
+          <a href="dashboard/contacto" class="px-4 hover:text-principal-grey-700">Contacto</a>
         </div>
       </div>
 
 
       <div class="flex items-center relative mr-36">
         <div class="flex items-center ms-3">
-          <div *ngIf="currentUser?.user?.username">
+          <div *ngIf="currentUser?.user?.username ; else notLoggedIn">
             <button
               type="button"
               (click)="toggleProfileIcon()"
-              class="flex text-sm bg-principal-blue-400 rounded-full focus:ring-4
+              class="flex items-center justify-center text-sm bg-principal-blue-400 rounded-full focus:ring-4
                     focus:ring-principal-blue-600"
+              style="width: 50px; height: 50px;"
             >
               <span class="sr-only">Open user menu</span>
               <div
-                class="size-10 rounded-full bg-pricipal-grey-400 text-center pt-[0.25rem]"
+                class="flex items-center justify-center rounded-full bg-principal-grey-400"
+                style="width: 50px; height: 50px;"
               >
-                <span class="text-lg">{{currentUser.user.username | slice:0:1 | titlecase}}</span> <!--TODO:AJUSTAR PARA QUE SE VEA FOTO DE PERFIL-->
-              </div>
 
+                <img
+                class="rounded-full" [src]="currentUser.imagen_perfil" [alt]="currentUser.nombre"
+                style="width: 40px; height: 40px;"
+                > <!--TODO:AJUSTAR PARA QUE SE VEA FOTO DE PERFIL-->
+              </div>
             </button>
 
           </div>
+
+          <ng-template #notLoggedIn>
+            <div class="ml-8 flex items-center justify-between text-pricipal-grey-400 font-semibold">
+              <a href="auth/" class="px-4 hover:text-principal-grey-700">Login</a>
+              <a href="auth/registro" class="px-4 hover:text-principal-grey-700">Registro</a>
+            </div>
+          </ng-template>
 
           @if( isOpenProfile() ) {
             <div
