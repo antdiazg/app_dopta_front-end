@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { PublicationService } from 'src/app/shared/services/publication.service';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle } from '@ionic/angular/standalone';
 import { Mascota } from '../../Interfaces/mascota.interface';
+import { User } from 'src/app/auth/interface';
 
 @Component({
   selector: 'app-mascotas-list',
@@ -15,6 +16,7 @@ import { Mascota } from '../../Interfaces/mascota.interface';
 export class MascotasListPage implements OnInit {
 
   mascotas: Mascota[] = [];
+  usuarios: User[] = [];
 
   constructor(private publicationService: PublicationService) { }
 
@@ -24,9 +26,13 @@ export class MascotasListPage implements OnInit {
 
   obtenerMascotas() {
     this.publicationService.obtenerMascotas().subscribe((data: any) => {
+
       this.mascotas = data;
+      
     })
   }
+
+
 
 
 

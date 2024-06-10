@@ -1,10 +1,12 @@
 
 export interface User {
+
   user: {
+        id: number;
         username: string;
         email: string;
         password: string;
-    },
+    };
     telefono: number;
     direccion: string;
     nombre: string;

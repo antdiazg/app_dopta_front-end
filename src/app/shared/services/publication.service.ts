@@ -11,4 +11,6 @@ export class PublicationService {
   obtenerMascotas(): Observable<any> {
     return this.http.get('http://localhost:8001/mascotas/lista-publicaciones/');
   }
+
+  
 }
