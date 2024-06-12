@@ -13,7 +13,7 @@ import { AuthStatus } from '../enums/auth-status.enum';
 })
 export class AuthService {
 
-  private baseUrl = 'http://127.0.0.1:8000/';
+  private baseUrl = 'http://alb-appdoptauser-1760123330.us-east-1.elb.amazonaws.com/';
 
   private _currentUser  = signal<User | null>( null );
   private _authStatus   = signal<AuthStatus>( AuthStatus.checking );
@@ -37,7 +37,7 @@ export class AuthService {
   }
 
 login(email: string, password: string): Observable<LoginResponse> {
-    const url = `${this.baseUrl}login/`;
+    const url = `${this.baseUrl}user/login/`;
     const body = { email, password };
 
     return this.http.post<LoginResponse>(url, body).pipe(
@@ -53,7 +53,7 @@ login(email: string, password: string): Observable<LoginResponse> {
 };
 
 getProfile(): Observable<any>{
-  const url = `${this.baseUrl}perfil/`;
+  const url = `${this.baseUrl}user/perfil/`;
   const token = localStorage.getItem('token-jwt');
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
   return this.http.get<any>(url, { headers }).pipe(
@@ -77,12 +77,12 @@ isAuthenticated(): boolean{
 }
 
 addPerson( persona : RegistroPersona): Observable<RegistroPersona> {
-  return this.http.post<RegistroPersona>(`${ this.baseUrl }persona/registro/`, persona);
+  return this.http.post<RegistroPersona>(`${ this.baseUrl }user/persona/registro/`, persona);
 }
 
 //TODO: modificar para registrar organizacion
 addOrganization( persona : RegistroPersona): Observable<RegistroPersona> {
-  return this.http.post<RegistroPersona>(`${ this.baseUrl }persona/registro/`, persona);
+  return this.http.post<RegistroPersona>(`${ this.baseUrl }user/persona/registro/`, persona);
 }
 
 personExists(email: string): Observable<boolean> {
@@ -92,7 +92,7 @@ personExists(email: string): Observable<boolean> {
 passRecovery(email: string): Observable<string> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { email: email };
-    return this.http.post<string>(`${this.baseUrl}recuperar/`, body, { headers: headers });
+    return this.http.post<string>(`${this.baseUrl}user/recuperar/`, body, { headers: headers });
   }
 
 
