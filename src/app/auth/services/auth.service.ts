@@ -82,7 +82,7 @@ addPerson( persona : RegistroPersona): Observable<RegistroPersona> {
 
 //TODO: modificar para registrar organizacion
 addOrganization( persona : RegistroPersona): Observable<RegistroPersona> {
-  return this.http.post<RegistroPersona>(`${ this.baseUrl }user/persona/registro/`, persona);
+  return this.http.post<RegistroPersona>(`${ this.baseUrl }/user/organizacion/registro/`, persona);
 }
 
 personExists(email: string): Observable<boolean> {
