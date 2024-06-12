@@ -1,4 +1,9 @@
+<ion-content *ngIf="isMobilView; else desktopView" [fullscreen]="true">
+  <h1>Aqui va la version mobil de favoritos </h1>
+</ion-content>
 
+<ng-template #desktopView>
+<ion-content>
 <!-- Carousel -->
 <div class="flex" id="carouselExample" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -33,3 +38,5 @@
   </a>
 </div>
 
+</ion-content>
+</ng-template>

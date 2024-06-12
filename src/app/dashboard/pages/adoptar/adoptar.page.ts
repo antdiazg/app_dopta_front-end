@@ -12,10 +12,22 @@ import { MascotasListPage } from '../../components/mascotas-list/mascotas-list.p
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,MascotasListPage]
 })
 export class AdoptarPage implements OnInit {
-
+  isMobilView! :boolean;
   constructor() { }
 
   ngOnInit() {
+
+      this.checkScreenWidth();
+      window.addEventListener('resize', () => {
+        this.checkScreenWidth();
+      });
   }
 
+  checkScreenWidth(): void{
+    if (window.innerWidth <= 768) {
+      this.isMobilView = true;
+    } else{
+      this.isMobilView = false;
+    }
+  }
 }

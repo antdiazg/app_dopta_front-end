@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ToolbarComponent implements OnInit{
     // @Input() routesDashboard!: SidebarRoutes[];
-
+  isMobilView! : boolean;
   private toolBarService   : ToolBarService    = inject( ToolBarService );
   private authService      : AuthService       = inject( AuthService );
   // private uploadFileService: UploadFileService = inject( UploadFileService );
@@ -54,6 +54,11 @@ export class ToolbarComponent implements OnInit{
   ngOnInit(): void {
     this.loadUserProfile();
 
+    this.checkScreenWidth();
+      window.addEventListener('resize', () => {
+        this.checkScreenWidth();
+      });
+
 
   }
 
@@ -72,6 +77,14 @@ export class ToolbarComponent implements OnInit{
         console.error('Error fetching user profile', error);
       }
     );
+  }
+
+  checkScreenWidth(): void{
+    if (window.innerWidth <= 768) {
+      this.isMobilView = true;
+    } else{
+      this.isMobilView = false;
+    }
   }
 
 }

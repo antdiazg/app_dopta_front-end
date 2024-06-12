@@ -10,10 +10,22 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class EventosPage  {
-
+export class EventosPage implements OnInit {
+isMobilView! :boolean;
   constructor() { }
 
+  ngOnInit() {
+    this.checkScreenWidth();
+      window.addEventListener('resize', () => {
+        this.checkScreenWidth();
+      });
+  }
 
-
+  checkScreenWidth(): void{
+    if (window.innerWidth <= 768) {
+      this.isMobilView = true;
+    } else{
+      this.isMobilView = false;
+    }
+  }
 }
