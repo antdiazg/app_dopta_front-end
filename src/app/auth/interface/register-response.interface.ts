@@ -19,3 +19,16 @@ export interface RegistroPersona {
     nombre: string;
     apellido: string;
 }
+
+export interface RegistroOrganizacion {
+  user: {
+      username: string;
+      email: string;
+      password: string;
+  },
+  telefono: number;
+  direccion: string;
+  rut_emp: string;
+  razon_social: string;
+  telefono2: number;
+}

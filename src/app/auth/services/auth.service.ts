@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { LoginResponse, User } from '../interface';
 import { Observable, catchError, map, tap, throwError } from 'rxjs';
-import { RegistroPersona } from '../interface/register-response.interface';
+import { RegistroOrganizacion, RegistroPersona } from '../interface/register-response.interface';
 import { AuthStatus } from '../enums/auth-status.enum';
 import { environments } from 'src/environments/environment';
 
@@ -83,13 +83,10 @@ export class AuthService {
   }
 
   //TODO: modificar para registrar organizacion
-  addOrganization(persona: RegistroPersona): Observable<RegistroPersona> {
-    return this.http.post<RegistroPersona>(`${this.baseUrl}/user/organizacion/registro/`, persona);
+  addOrganization(organizacion: RegistroOrganizacion): Observable<RegistroOrganizacion> {
+    return this.http.post<RegistroOrganizacion>(`${this.baseUrl}user/organizacion/registro/`, organizacion);
   }
 
-  personExists(email: string): Observable<boolean> {
-    return this.http.get<boolean>(`${this.baseUrl}persona/existe?email=${email}`);
-  }
 
   passRecovery(email: string): Observable<string> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

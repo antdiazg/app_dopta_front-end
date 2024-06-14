@@ -73,7 +73,7 @@ export class RegistroPage implements OnInit{
 
   onSubmit(): void{
 
-    if ( this.formularioRegistro.invalid) return;
+    if ( this.formularioRegistro.invalid ) return;
     console.log("Datos del formulario:", this.currentPerson);
     // if ( this.currentPerson.user.email ){
     //   console.log("Ya existe el usuario");
@@ -85,7 +85,7 @@ export class RegistroPage implements OnInit{
       .subscribe({
         next: (RegisterResponse) => {
           console.log('Registro successful!', RegisterResponse);
-          this.router.navigate(['/auth/login']);
+          this.router.navigateByUrl('/auth/login/');
           this.formularioRegistro.reset();
         },
         error: (error) => {
