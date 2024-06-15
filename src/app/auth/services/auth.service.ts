@@ -16,7 +16,7 @@ import { Organizacion } from '../interface/user.interface';
 })
 export class AuthService {
 
-  private baseUrl = environments.baseUrl;
+  private baseUrl = environments.URL_USER;
 
   private _currentUser = signal<User | null>(null);
   private _currentOrganizacion = signal<Organizacion | null>(null);
@@ -74,11 +74,11 @@ export class AuthService {
     )
   }
 
-  updateUser(user: User): Observable<User>{
+  updateUser(user: User): Observable<User> {
     const url = `${this.baseUrl}user/perfil/`;
     const token = localStorage.getItem('token-jwt');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put<User>(url,user,{ headers }).pipe(
+    return this.http.put<User>(url, user, { headers }).pipe(
       tap(response => {
         console.log('User updated:', response);
       }),
@@ -90,7 +90,7 @@ export class AuthService {
     );
   }
 
-  updateOrganizacion(organizacion: Organizacion): Observable<Organizacion>{
+  updateOrganizacion(organizacion: Organizacion): Observable<Organizacion> {
     return this.http.put<Organizacion>(`${this.baseUrl}user/perfil/`, organizacion);
   }
 

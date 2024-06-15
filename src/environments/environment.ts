@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environments = {
-  baseUrl : 'http://alb-appdoptauser-1760123330.us-east-1.elb.amazonaws.com/',
-  baseUrl2: 'http://alb-appdoptapost-245125318.us-east-1.elb.amazonaws.com/'
+  BASE_URL: "http://localhost:8100",
+  URL_USER: 'http://alb-appdoptauser-1760123330.us-east-1.elb.amazonaws.com/',
+  URL_POST: 'http://alb-appdoptapost-245125318.us-east-1.elb.amazonaws.com/'
 };
 
 /*

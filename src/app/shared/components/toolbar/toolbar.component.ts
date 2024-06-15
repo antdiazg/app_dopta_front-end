@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { User } from 'src/app/auth/interface';
 import { CommonModule } from '@angular/common';
+import { environments } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-toolbar',
@@ -13,31 +15,30 @@ import { CommonModule } from '@angular/common';
   templateUrl: './toolbar.component.html',
   styles: ``
 })
-export class ToolbarComponent implements OnInit{
-    // @Input() routesDashboard!: SidebarRoutes[];
-  isMobilView! : boolean;
-  private toolBarService   : ToolBarService    = inject( ToolBarService );
-  private authService      : AuthService       = inject( AuthService );
+export class ToolbarComponent implements OnInit {
+  // @Input() routesDashboard!: SidebarRoutes[];
+  isMobilView!: boolean;
+  private toolBarService: ToolBarService = inject(ToolBarService);
+  private authService: AuthService = inject(AuthService);
   // private uploadFileService: UploadFileService = inject( UploadFileService );
-  private router           : Router            = inject( Router );
+  private router: Router = inject(Router);
 
-  public isNavOpen             = signal<boolean>( false );
-  public isOpenProfile         = computed<boolean>( () => this.toolBarService.isProfileOpen() );
+  public isNavOpen = signal<boolean>(false);
+  public isOpenProfile = computed<boolean>(() => this.toolBarService.isProfileOpen());
   // public logoOrganization      = computed<string>( () => this.uploadFileService.logoComputed() );
 
-  public currentUser!  : User;
+  public currentUser!: User;
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   toggleNav() {
-    this.isNavOpen.update( isNavOpen => isNavOpen = !isNavOpen );
+    this.isNavOpen.update(isNavOpen => isNavOpen = !isNavOpen);
 
   };
-//TODO: arreglar la redirección para modificar perfil (actualizar información)
+  //TODO: arreglar la redirección para modificar perfil (actualizar información)
   toggleProfile() {
 
-    this.router.navigateByUrl('auth/editar-persona')
+    window.location.href = `${environments.BASE_URL}/auth/editar-persona`
     this.toolBarService.toggleProfileIcon();
-    window.location.reload();
   }
 
   toggleProfileIcon() {
@@ -45,7 +46,7 @@ export class ToolbarComponent implements OnInit{
 
   };
 
-//TODO: arreglar funcionalidad de salir de sesión
+  //TODO: arreglar funcionalidad de salir de sesión
   onLogout() {
     this.authService.logout();
     this.toolBarService.toggleProfileIcon();
@@ -56,9 +57,9 @@ export class ToolbarComponent implements OnInit{
     this.loadUserProfile();
 
     this.checkScreenWidth();
-      window.addEventListener('resize', () => {
-        this.checkScreenWidth();
-      });
+    window.addEventListener('resize', () => {
+      this.checkScreenWidth();
+    });
 
 
   }
@@ -80,10 +81,10 @@ export class ToolbarComponent implements OnInit{
     );
   }
 
-  checkScreenWidth(): void{
+  checkScreenWidth(): void {
     if (window.innerWidth <= 768) {
       this.isMobilView = true;
-    } else{
+    } else {
       this.isMobilView = false;
     }
   }

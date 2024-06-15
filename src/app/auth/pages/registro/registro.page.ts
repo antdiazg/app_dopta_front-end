@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginPage } from '../login/login.page';
 import { RegistroPersona } from '../../interface/register-response.interface';
+import { environments } from 'src/environments/environment';
 
 @Component({
   selector: 'app-registro',
@@ -15,39 +16,39 @@ import { RegistroPersona } from '../../interface/register-response.interface';
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,
     ReactiveFormsModule, LoginPage]
 })
-export class RegistroPage implements OnInit{
+export class RegistroPage implements OnInit {
 
   public formularioRegistro = new FormGroup({
-      username: new FormControl<string>('', { nonNullable: true}),
-      password: new FormControl<string>('', { nonNullable: true}),
-      // confirmPassword: new FormControl('', { nonNullable: true}),
-      email: new FormControl<string>('', { nonNullable: true}),
-      telefono: new FormControl<number>(0, { nonNullable: true}),
-      direccion: new FormControl<string>('', { nonNullable: true}),
-      nombre: new FormControl<string>('', { nonNullable: true}),
-      apellido: new FormControl<string>('', { nonNullable: true}),
-      // 'fechaNacimiento': new FormControl("",Validators.required), //TODO: hay que agregarlo en el backend o hacer validacion
+    username: new FormControl<string>('', { nonNullable: true }),
+    password: new FormControl<string>('', { nonNullable: true }),
+    // confirmPassword: new FormControl('', { nonNullable: true}),
+    email: new FormControl<string>('', { nonNullable: true }),
+    telefono: new FormControl<number>(0, { nonNullable: true }),
+    direccion: new FormControl<string>('', { nonNullable: true }),
+    nombre: new FormControl<string>('', { nonNullable: true }),
+    apellido: new FormControl<string>('', { nonNullable: true }),
+    // 'fechaNacimiento': new FormControl("",Validators.required), //TODO: hay que agregarlo en el backend o hacer validacion
   });
   registroError: string = '';
-  isMobilView!     : boolean;
+  isMobilView!: boolean;
 
   constructor(
     @Inject(Router) private router: Router,
     private authService: AuthService
-    ) {}
+  ) { }
 
-  get currentPerson(): RegistroPersona{
+  get currentPerson(): RegistroPersona {
     return {
-    user: {
-      username: this.formularioRegistro.get('username')!.value!,
-      email: this.formularioRegistro.get('email')!.value!,
-      password: this.formularioRegistro.get('password')!.value!
-    },
-    telefono: this.formularioRegistro.get('telefono')!.value!,
-    direccion: this.formularioRegistro.get('direccion')!.value!,
-    nombre: this.formularioRegistro.get('nombre')!.value!,
-    apellido: this.formularioRegistro.get('apellido')!.value!
-  };
+      user: {
+        username: this.formularioRegistro.get('username')!.value!,
+        email: this.formularioRegistro.get('email')!.value!,
+        password: this.formularioRegistro.get('password')!.value!
+      },
+      telefono: this.formularioRegistro.get('telefono')!.value!,
+      direccion: this.formularioRegistro.get('direccion')!.value!,
+      nombre: this.formularioRegistro.get('nombre')!.value!,
+      apellido: this.formularioRegistro.get('apellido')!.value!
+    };
   }
 
 
@@ -65,15 +66,15 @@ export class RegistroPage implements OnInit{
     // })
 
 
+    this.checkScreenWidth();
+    window.addEventListener('resize', () => {
       this.checkScreenWidth();
-      window.addEventListener('resize', () => {
-        this.checkScreenWidth();
-      });
+    });
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
 
-    if ( this.formularioRegistro.invalid ) return;
+    if (this.formularioRegistro.invalid) return;
     console.log("Datos del formulario:", this.currentPerson);
     // if ( this.currentPerson.user.email ){
     //   console.log("Ya existe el usuario");
@@ -81,11 +82,11 @@ export class RegistroPage implements OnInit{
     //   return;
     // }
 
-    this.authService.addPerson( this.currentPerson )
+    this.authService.addPerson(this.currentPerson)
       .subscribe({
         next: (RegisterResponse) => {
           console.log('Registro successful!', RegisterResponse);
-          this.router.navigateByUrl('/auth/login/');
+          window.location.href = `${environments.BASE_URL}/auth/login/`
           this.formularioRegistro.reset();
         },
         error: (error) => {
@@ -97,7 +98,7 @@ export class RegistroPage implements OnInit{
 
   }
 
-    // onSubmit(): void{
+  // onSubmit(): void{
 
   //   if ( this.formularioRegistro.invalid) return;
   //   console.log("Datos del formulario:", this.currentPerson);
@@ -130,19 +131,19 @@ export class RegistroPage implements OnInit{
   //     });
   // }
 
-  checkScreenWidth(){
+  checkScreenWidth() {
     if (window.innerWidth <= 768) {
       this.isMobilView = true;
-    } else{
+    } else {
       this.isMobilView = false;
     }
   }
 
-  checkPasswords(group: FormGroup){
+  checkPasswords(group: FormGroup) {
     const password = group.get('password')?.value;
     const confirmPassword = group.get('confirmPassword')?.value;
 
-    return password === confirmPassword ? null : {notSame: true};
+    return password === confirmPassword ? null : { notSame: true };
   }
 
 }

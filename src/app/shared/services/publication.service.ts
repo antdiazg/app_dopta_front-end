@@ -7,7 +7,7 @@ import { environments } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PublicationService {
-  private baseUrl = environments.baseUrl2;
+  private baseUrl = environments.URL_POST;
 
   constructor(private http: HttpClient) { }
   obtenerMascotas(): Observable<any> {

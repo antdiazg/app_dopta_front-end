@@ -14,7 +14,7 @@ export const routesDashboard: Routes = [
     component: IndexPage,
     children: [
       { path: 'eventos', component: EventosPage },
-      { path: 'adoptar', component: AdoptarPage },
+      { path: '', component: AdoptarPage },
       { path: 'favoritos', component: FavoritosPage },
       { path: 'mapa-servicios', component: MapaServiciosPage },
       { path: 'sobre-nosotros', component: SobreNosotrosPage },
@@ -22,10 +22,10 @@ export const routesDashboard: Routes = [
       { path: 'mascota-list', component: MascotasListPage },
     ]
   },
-  {
-    path: '',
-    redirectTo: 'adoptar',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: '',
+  //   redirectTo: 'adoptar',
+  //   pathMatch: 'full'
+  // }
 
 ]
