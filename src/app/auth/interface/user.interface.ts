@@ -6,6 +6,7 @@ export interface User {
         username: string;
         email: string;
         password: string;
+        is_persona: boolean;
     };
     telefono: number;
     direccion: string;
@@ -18,13 +19,17 @@ export interface User {
 
 export interface Organizacion {
 
-  username: string,
-  password: string,
-  email: string,
-  telefono: number,
-  direccion: string,
-  rut_emp: string,
-  razon_social: string,
-  telefono2: number,
-
+  user: {
+        id: number;
+        username: string;
+        email: string;
+        password: string;
+        is_organizacion: boolean;
+    };
+  telefono: number;
+  direccion: string;
+  rut_emp: string;
+  razon_social: string;
+  telefono2: number;
+  imagen_perfil: string;
 }

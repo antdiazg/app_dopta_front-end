@@ -34,10 +34,11 @@ export class ToolbarComponent implements OnInit{
   };
 //TODO: arreglar la redirección para modificar perfil (actualizar información)
   toggleProfile() {
-    this.router.navigateByUrl( '/dashboard/configuraciones/perfilOrg' );
-    this.toolBarService.toggleProfileIcon();
 
-  };
+    this.router.navigateByUrl('auth/editar-persona')
+    this.toolBarService.toggleProfileIcon();
+    window.location.reload();
+  }
 
   toggleProfileIcon() {
     this.toolBarService.toggleProfileIcon();
@@ -48,7 +49,7 @@ export class ToolbarComponent implements OnInit{
   onLogout() {
     this.authService.logout();
     this.toolBarService.toggleProfileIcon();
-
+    window.location.reload();
   };
 
   ngOnInit(): void {

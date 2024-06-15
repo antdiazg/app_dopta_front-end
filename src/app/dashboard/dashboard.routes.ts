@@ -20,8 +20,12 @@ export const routesDashboard: Routes = [
       { path: 'sobre-nosotros', component: SobreNosotrosPage },
       { path: 'contacto', component: ContactoPage },
       { path: 'mascota-list', component: MascotasListPage },
-
     ]
   },
+  {
+    path: '',
+    redirectTo: 'adoptar',
+    pathMatch: 'full'
+  }
 
 ]
