@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { LoginResponse, User } from '../interface';
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
+import { Observable, catchError, delay, map, tap, throwError } from 'rxjs';
 import { RegistroOrganizacion, RegistroPersona } from '../interface/register-response.interface';
 import { AuthStatus } from '../enums/auth-status.enum';
 import { environments } from 'src/environments/environment';
@@ -74,7 +74,7 @@ export class AuthService {
     )
   }
 
-  updateUser(user: User): Observable<User> {
+  updateUser(user: FormData): Observable<User> {
     const url = `${this.baseUrl}user/perfil/`;
     const token = localStorage.getItem('token-jwt');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
