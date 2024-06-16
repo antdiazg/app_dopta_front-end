@@ -73,18 +73,19 @@ export class LoginPage implements OnInit {
         next: async (loginResponse) => {
           console.log('Login successful!', { loginResponse });
           await this.presentWelcomeAlert();
-          // Aquí no se redirige de inmediato, esperando interacción del usuario
+          // No redirige de inmediato, espera la interacción del usuario o el cierre automático de la alerta
         },
-        error: (error) => {
+        error: async (error) => {
           console.error('Login error:', error);
           if (error.status === 403 && error.error && error.error.error === 'La cuenta está desactivada, se reenviara un correo con el nuevo link de actualizacion') {
-            this.loginError = 'La cuenta está desactivada. Se ha enviado un correo con un nuevo enlace de activación.';
+            await this.presentErrorAlert('La cuenta está desactivada. Se ha enviado un correo con un nuevo enlace de activación.');
           } else {
-            this.loginError = 'Error al iniciar sesión. Por favor, verifica tus credenciales e intenta nuevamente.';
+            await this.presentErrorAlert('Error al iniciar sesión. Por favor, verifica tus credenciales e intenta nuevamente.');
           }
         }
       });
   }
+
 
   async presentWelcomeAlert(): Promise<void> {
     const alert = await this.alertController.create({
@@ -109,6 +110,23 @@ export class LoginPage implements OnInit {
       });
     }, 3000); // 5000 milisegundos = 5 segundos
 
+  }
+
+  async presentErrorAlert(message: string): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Error al iniciar sesión',
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    // Cerrar la alerta automáticamente después de 5 segundos (ajusta el tiempo según tus necesidades)
+    setTimeout(() => {
+      alert.dismiss().then(() => {
+        console.log('Alerta de error cerrada automáticamente.');
+      });
+    }, 5000); // 5000 milisegundos = 5 segundos
   }
 
 
