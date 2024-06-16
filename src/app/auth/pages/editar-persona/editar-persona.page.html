@@ -2,98 +2,49 @@
 <ion-content *ngIf="isMobilView; else desktopView" [fullscreen]="true">
   <div class="container flex flex-col justify-center items-center mt-8 py-3">
     <div class="container-logo flex">
-    <img
-      src="../../../../assets/icon/Logo_AppDopta.jpeg"
-      alt="Logo App Dopta"
-      class="h-20 w-20"
-    />
-    <ion-title size="large" class="text-4xl text-principal-grey-700">AppDopta</ion-title>
-  </div>
+      <img src="../../../../assets/icon/Logo_AppDopta.jpeg" alt="Logo App Dopta" class="h-20 w-20" />
+      <ion-title size="large" class="text-4xl text-principal-grey-700">AppDopta</ion-title>
+    </div>
 
-  <div class="container-formulario mt-1">
-    <form
-      [formGroup]="userForm"
-      class="space-y-1"
-      (ngSubmit)="onSubmit()"
-      method="POST"
-    >
-      <div>
-        <label
-          for="nombre"
-          class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-          >Nombre</label
-        >
-        <div class="mt-1">
-          <input
-            formControlName="nombre"
-            id="nombre"
-            name="nombre"
-            [value]="user.nombre"
-            type="text"
-            required
-            class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+    <div class="container-formulario mt-1">
+      <form [formGroup]="userForm" class="space-y-1" (ngSubmit)="onSubmit()" method="POST">
+        <div>
+          <label for="nombre" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Nombre</label>
+          <div class="mt-1">
+            <input formControlName="nombre" id="nombre" name="nombre" [value]="user.nombre" type="text" required
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
         </div>
-      </div>
 
-      <div>
-        <label
-          for="apellido"
-          class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-          >Apellido</label
-        >
-        <div class="mt-1">
-          <input
-            formControlName="apellido"
-            id="apellido"
-            name="apellido"
-            [value]="user.apellido"
-            type="text"
-            required
-            class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+        <div>
+          <label for="apellido"
+            class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Apellido</label>
+          <div class="mt-1">
+            <input formControlName="apellido" id="apellido" name="apellido" [value]="user.apellido" type="text" required
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
         </div>
-      </div>
 
-      <div>
-        <label
-          for="username"
-          class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-          >Nombre de usuario</label
-        >
-        <div class="mt-1">
-          <input
-            id="username"
-            name="username"
-            [value]="user.user.username"
-            type="text"
-            [attr.disabled]="true"
-            required
-            class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+        <div>
+          <label for="username" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Nombre de
+            usuario</label>
+          <div class="mt-1">
+            <input id="username" name="username" [value]="user.user.username" type="text" [attr.disabled]="true"
+              required
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
         </div>
-      </div>
 
-      <div>
-        <label
-          for="telefono"
-          class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-          >Teléfono</label
-        >
-        <div class="mt-1">
-          <input
-            formControlName="telefono"
-            id="telefono"
-            name="telefono"
-            [value]="user.telefono"
-            type="text"
-            required
-            class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+        <div>
+          <label for="telefono"
+            class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Teléfono</label>
+          <div class="mt-1">
+            <input formControlName="telefono" id="telefono" name="telefono" [value]="user.telefono" type="text" required
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
         </div>
-      </div>
 
-      <!-- <div>
+        <!-- <div>
         <label
           for="fechaNacimiento"
           class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
@@ -111,47 +62,27 @@
         </div>
       </div> -->
 
-      <div>
-        <label
-          for="direccion"
-          class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-          >Dirección</label
-        >
-        <div class="mt-1">
-          <input
-            formControlName="direccion"
-            id="direccion"
-            name="direccion"
-            [value]="user.direccion"
-            type="text"
-            required
-            class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+        <div>
+          <label for="direccion"
+            class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Dirección</label>
+          <div class="mt-1">
+            <input formControlName="direccion" id="direccion" name="direccion" [value]="user.direccion" type="text"
+              required
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
         </div>
-      </div>
 
-      <div>
-        <label
-          for="email"
-          class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-          >Email</label
-        >
-        <div class="mt-1">
-          <input
-            id="email"
-            name="email"
-            [value]="user.user.email"
-            [attr.disabled]="true"
-            type="email"
-            autocomplete="email"
-            required
-            class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+        <div>
+          <label for="email" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Email</label>
+          <div class="mt-1">
+            <input id="email" name="email" [value]="user.user.email" [attr.disabled]="true" type="email"
+              autocomplete="email" required
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
         </div>
-      </div>
 
 
-      <!-- <div>
+        <!-- <div>
         <div class="flex items-center justify-between">
           <label
             for="password"
@@ -174,16 +105,14 @@
           </div>
       </div> -->
 
-      <div class="container-fb flex items-center justify-items-center">
-        <button
-          type="submit"
-          class="flex w-72 justify-center rounded-3xl bg-principal-blue-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-principal-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-principal-blue-600"
-        >
-          Actualizar
-        </button>
-      </div>
-    </form>
-  </div>
+        <div class="container-fb flex items-center justify-items-center">
+          <button type="submit"
+            class="flex w-72 justify-center rounded-3xl bg-principal-blue-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-principal-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-principal-blue-600">
+            Actualizar
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 
 </ion-content>
@@ -195,11 +124,7 @@
 
     <div class="flex">
       <div class="container-logo flex-col py-80 bg-principal-blue-400 w-1/2 h-screen">
-        <img
-          src="../../../../assets/icon/Logo_AppDopta.jpeg"
-          alt="Logo App Dopta"
-          class="h-48 w-48 mx-auto"
-        />
+        <img src="../../../../assets/icon/Logo_AppDopta.jpeg" alt="Logo App Dopta" class="h-48 w-48 mx-auto" />
         <h1 class="text-4xl text-white text-center mb-4 font-bold">¡Actualiza tu información!</h1>
         <p class="text-center  text-white font-bold">Encuentra tu compañero peludo perfecto y ayuda a</p>
         <p class="text-center  text-white font-bold">darles un hogar a aquellos que lo necesitan</p>
@@ -207,161 +132,106 @@
 
       <div class="mt-5 h-screen container-registro mx-auto my-auto">
         <div class="max-w-md mx-auto">
-        <form
-        class="space-y-1"
-        [formGroup]="userForm"
-        (ngSubmit)="onSubmit()" >
-          <h2 class="text-4xl text-principal-grey-700 font-bold mb-0 pb-0">Actualiza tú información</h2>
-          <div>
-            <label
-              for="nombre"
-              class="block text-sm font-medium leading-6 text-principal-blue-400"
-              >Nombre</label
-            >
-            <input
-              formControlName="nombre"
-              id="nombre"
-              name="nombre"
-              [value]="user.nombre"
-              type="text"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
-
-          <div>
-            <div class="flex justify-between">
-              <label
-                for="apellido"
-                class="block text-sm font-medium leading-6 text-principal-blue-400"
-                >Apellido</label
-              >
+          <form class="space-y-1" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <h2 class="text-4xl text-principal-grey-700 font-bold mb-0 pb-0">Actualiza tú información</h2>
+            <div>
+              <label for="nombre" class="block text-sm font-medium leading-6 text-principal-blue-400">Nombre</label>
+              <input formControlName="nombre" id="nombre" name="nombre" [value]="user.nombre" type="text" required
+                class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
             </div>
-            <input
-              formControlName="apellido"
-              id="apellido"
-              name="apellido"
-              [value]="user.apellido"
-              type="text"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
 
-          <div>
-            <div class="flex justify-between">
-              <label
-                for="username"
-                class="block text-sm font-medium leading-6 text-principal-blue-400"
-                >Nombre de usuario</label
-              >
-            </div>
-            <input
-              id="username"
-              name="username"
-              [attr.disabled]="true"
-              [value]="user.user.username"
-              type="text"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
-
-          <div>
-            <div class="flex justify-between">
-              <label
-                for="telefono"
-                class="block text-sm font-medium leading-6 text-principal-blue-400"
-                >Teléfono</label
-              >
-            </div>
-            <input
-              formControlName="telefono"
-              id="telefono"
-              name="telefono"
-              [value]="user.telefono"
-              type="text"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
-
-
-          <div>
-            <label
-              for="email"
-              class="block text-sm font-medium leading-6 text-principal-blue-400"
-              >Email</label
-            >
-            <input
-              id="email"
-              name="email"
-              [attr.disabled]="true"
-              [value]="user.user.email"
-              type="email"
-              autocomplete="email"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
-
-          <div>
-            <label
-              for="direccion"
-              class="block text-sm font-medium leading-6 text-principal-blue-400"
-              >Dirección</label
-            >
-            <input
-              formControlName="direccion"
-              id="direccion"
-              name="direccion"
-              [value]="user.direccion"
-              type="text"
-              required
-              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
-            />
-          </div>
-
-          <div>
-            <label for="imagen_perfil" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Imagen de perfil</label>
-              <div class="mt-1">
-                <input type="file" id="imagen_perfil" (change)="onImgSelected($event)" class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+            <div>
+              <div class="flex justify-between">
+                <label for="apellido"
+                  class="block text-sm font-medium leading-6 text-principal-blue-400">Apellido</label>
               </div>
-          </div>
+              <input formControlName="apellido" id="apellido" name="apellido" [value]="user.apellido" type="text"
+                required
+                class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+            </div>
 
-          <div>
-            <label for="documento" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Agregar documentos</label>
-              <div class="mt-1">
-                <input type="file" id="documento" (change)="onDocumentSelected($event)" class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+            <div>
+              <div class="flex justify-between">
+                <label for="username" class="block text-sm font-medium leading-6 text-principal-blue-400">Nombre de
+                  usuario</label>
               </div>
-          </div>
+              <input id="username" name="username" [attr.disabled]="true" [value]="user.user.username" type="text"
+                required
+                class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+            </div>
+
+            <div>
+              <div class="flex justify-between">
+                <label for="telefono"
+                  class="block text-sm font-medium leading-6 text-principal-blue-400">Teléfono</label>
+              </div>
+              <input formControlName="telefono" id="telefono" name="telefono" [value]="user.telefono" type="text"
+                required
+                class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+            </div>
 
 
-          <div class="mt-8">
-            <button
-              type="submit"
-              class="w-full py-3 bg-black text-white rounded-full shadow-md hover:bg-pricipal-grey-400 transition duration-300"
-            >
-              Actualizar
-            </button>
-          </div>
-        </form>
+            <div>
+              <label for="email" class="block text-sm font-medium leading-6 text-principal-blue-400">Email</label>
+              <input id="email" name="email" [attr.disabled]="true" [value]="user.user.email" type="email"
+                autocomplete="email" required
+                class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+            </div>
+
+            <div>
+              <label for="direccion"
+                class="block text-sm font-medium leading-6 text-principal-blue-400">Dirección</label>
+              <input formControlName="direccion" id="direccion" name="direccion" [value]="user.direccion" type="text"
+                required
+                class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+            </div>
+            <div>
+              <label for="fecha nacimiento" class="block text-sm font-medium leading-6 text-principal-blue-400">Fecha de
+                nacimiento</label>
+              <input id="fec_nac" name="fec_nac" [attr.disabled]="true" [value]="user.fec_nac"
+                type="text" required
+                class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+            </div>
+
+            <div>
+              <label for="imagen_perfil" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Imagen
+                de perfil</label>
+              <div class="mt-1">
+                <input type="file" id="imagen_perfil" (change)="onImgSelected($event)"
+                  class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              </div>
+            </div>
+
+            <div>
+              <label for="documento" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Agregar
+                documentos</label>
+              <div class="mt-1">
+                <input type="file" id="documento" (change)="onDocumentSelected($event)"
+                  class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              </div>
+            </div>
+
+
+            <div class="mt-8">
+              <button type="submit"
+                class="w-full py-3 bg-black text-white rounded-full shadow-md hover:bg-pricipal-grey-400 transition duration-300">
+                Actualizar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <hr class="mt-8" />
+
+        <div class="mt-8">
+          <!--TODO:Agregar redireccion al dashboard -->
+          <button type="submit"
+            class="w-full py-3 bg-black text-white rounded-full shadow-md hover:bg-pricipal-grey-400 transition duration-300">
+            Volver
+          </button>
+        </div>
+
       </div>
-
-      <hr class="mt-8" />
-
-      <div class="mt-8">
-            <!--TODO:Agregar redireccion al dashboard -->
-            <button
-              type="submit"
-              class="w-full py-3 bg-black text-white rounded-full shadow-md hover:bg-pricipal-grey-400 transition duration-300"
-            >
-              Volver
-            </button>
-          </div>
-
     </div>
-      </div>
   </ion-content>
 </ng-template>
-

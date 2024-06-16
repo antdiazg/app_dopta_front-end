@@ -3,7 +3,7 @@ import { ToolBarService } from '../../services/tool-bar.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { User } from 'src/app/auth/interface';
+import { User, Persona } from 'src/app/auth/interface';
 import { CommonModule } from '@angular/common';
 import { environments } from 'src/environments/environment';
 
@@ -27,7 +27,7 @@ export class ToolbarComponent implements OnInit {
   public isOpenProfile = computed<boolean>(() => this.toolBarService.isProfileOpen());
   // public logoOrganization      = computed<string>( () => this.uploadFileService.logoComputed() );
 
-  public currentUser!: User;
+  public currentUser!: Persona;
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   toggleNav() {

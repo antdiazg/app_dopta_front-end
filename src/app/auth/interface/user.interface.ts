@@ -1,31 +1,34 @@
 
 export interface User {
 
-  user: {
-        id: number;
-        username: string;
-        email: string;
-        password: string;
-        is_persona: boolean;
-    };
-    telefono: number;
-    direccion: string;
-    nombre: string;
-    apellido: string;
-    imagen_perfil: string;
-    documento: string;
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  is_persona: boolean;
+  is_organizacion: boolean
+  is_staff: boolean
+
 }
 
+export interface Persona {
+
+  user: User;
+  id: number;
+  telefono: number;
+  direccion: string;
+  nombre: string;
+  apellido: string;
+  fec_nac: Date;
+  imagen_perfil: string;
+  documento: string;
+
+
+}
 
 export interface Organizacion {
 
-  user: {
-        id: number;
-        username: string;
-        email: string;
-        password: string;
-        is_organizacion: boolean;
-    };
+  user: User
   telefono: number;
   direccion: string;
   rut_emp: string;
