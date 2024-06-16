@@ -2,10 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonRouterOutlet } from '@ionic/angular/standalone';
-import { User, Persona } from '../../interface';
+import { User, Persona, Organizacion } from '../../interface';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { environments } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-editar-persona',
@@ -16,10 +17,13 @@ import { environments } from 'src/environments/environment';
 })
 export class EditarPersonaPage implements OnInit {
   isMobilView!: boolean;
-  userForm!: FormGroup;
-  user!: Persona;
+  personaForm!: FormGroup;
+  organizacionForm!: FormGroup;
+  persona!: Persona;
+  organizacion!: Organizacion;
   imgPerfil: File | null = null;
   documento: File | null = null;
+
 
   constructor(
     private fb: FormBuilder,
@@ -28,8 +32,10 @@ export class EditarPersonaPage implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.initForm();
-    this.loadUserData();
+    this.initFormPersona();
+    this.initFormOrganizacion();
+    this.loadPersonaData();
+    this.loadOrganizacionData();
 
     this.checkScreenWidth();
     window.addEventListener('resize', () => {
@@ -37,8 +43,8 @@ export class EditarPersonaPage implements OnInit {
     });
   }
 
-  initForm(): void {
-    this.userForm = this.fb.group({
+  initFormPersona(): void {
+    this.personaForm = this.fb.group({
       telefono: [''],
       direccion: [''],
       nombre: [''],
@@ -48,12 +54,11 @@ export class EditarPersonaPage implements OnInit {
       //documento: [''],
     });
   }
-
-  loadUserData(): void {
+  loadPersonaData(): void {
     this.authService.getProfile()
       .subscribe(user => {
-        this.user = user;
-        this.userForm.patchValue({
+        this.persona = user;
+        this.personaForm.patchValue({
           telefono: user.telefono,
           direccion: user.direccion,
           nombre: user.nombre,
@@ -61,6 +66,34 @@ export class EditarPersonaPage implements OnInit {
           fec_nac: user.fec_nac,
           //imagen_perfil: user.imagen_perfil,
           //documento: user.documento,
+        });
+      })
+  }
+
+  initFormOrganizacion(): void {
+    this.organizacionForm = this.fb.group({
+      telefono: [''],
+      telefono2: [''],
+      direccion: [''],
+      razon_social: [''],
+      rut_emp: [''],
+      //imagen_perfil: [''], //TODO:hay que ver como enviar el archivo
+      //documento: [''],
+    });
+  }
+
+  loadOrganizacionData(): void {
+    this.authService.getProfile()
+      .subscribe(user => {
+        this.organizacion = user;
+        this.organizacionForm.patchValue({
+          telefono: user.telefono,
+          telefono2: user.telefono2,
+          direccion: user.direccion,
+          razon_social: user.razon_social,
+          rut_emp: user.rut_emp,
+          //imagen_perfil: user.imagen_perfil,
+
         });
       })
   }
@@ -79,11 +112,11 @@ export class EditarPersonaPage implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    if (this.userForm.valid) {
+  onSubmitPersona(): void {
+    if (this.personaForm.valid) {
       const formData = new FormData();
-      formData.append('telefono', this.userForm.value.telefono);
-      formData.append('direccion', this.userForm.value.direccion);
+      formData.append('telefono', this.personaForm.value.telefono);
+      formData.append('direccion', this.personaForm.value.direccion);
       // formData.append('nombre', this.userForm.value.nombre);
       // formData.append('apellido', this.userForm.value.apellido);
 
@@ -98,6 +131,36 @@ export class EditarPersonaPage implements OnInit {
       this.authService.updateUser(formData)
         .subscribe(response => {
           console.log('Persona Actualizada correctamente :', response);
+          setTimeout(() => {
+            window.location.reload();
+
+          }, 4000);
+        });
+
+    }
+
+  }
+  onSubmitOrganizacion(): void {
+    if (this.organizacionForm.valid) {
+      const formData = new FormData();
+      formData.append('razon_social', this.organizacionForm.value.razon_social);
+      formData.append('telefono', this.organizacionForm.value.telefono);
+      formData.append('telefono2', this.organizacionForm.value.telefono2);
+      formData.append('direccion', this.organizacionForm.value.direccion);
+      // formData.append('nombre', this.userForm.value.nombre);
+      // formData.append('apellido', this.userForm.value.apellido);
+
+      if (this.imgPerfil) {
+        formData.append('imagen_perfil', this.imgPerfil);
+      }
+
+      if (this.documento) {
+        formData.append('documento', this.documento);
+      }
+
+      this.authService.updateUser(formData)
+        .subscribe(response => {
+          console.log('Organización Actualizada correctamente :', response);
           setTimeout(() => {
             window.location.reload();
 
