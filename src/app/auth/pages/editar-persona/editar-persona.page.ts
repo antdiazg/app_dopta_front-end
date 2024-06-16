@@ -98,10 +98,18 @@ export class EditarPersonaPage implements OnInit {
       this.authService.updateUser(formData)
         .subscribe(response => {
           console.log('Persona Actualizada correctamente :', response);
+          setTimeout(() => {
+            window.location.reload();
+
+          }, 4000);
         });
-      window.location.reload()
+
     }
 
+  }
+
+  volver():void {
+    window.location.reload();
   }
 
   checkScreenWidth(): void {
