@@ -1,0 +1,128 @@
+<ion-content *ngIf="isMobilView; else desktopView" [fullscreen]="true">
+  <div class="p-4">
+    <h1 class="text-2xl font-bold mb-4 text-center">Crear Publicación de Mascota (Móvil)</h1>
+    <form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()">
+      <ion-item>
+        <ion-label position="floating">Título</ion-label>
+        <ion-input formControlName="titulo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre de la Mascota</ion-label>
+        <ion-input formControlName="nom_mascota"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Especie</ion-label>
+        <ion-input formControlName="especie"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Raza</ion-label>
+        <ion-input formControlName="raza"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Sexo</ion-label>
+        <ion-select formControlName="sexo">
+          <ion-select-option value="M">Macho</ion-select-option>
+          <ion-select-option value="H">Hembra</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Tamaño</ion-label>
+        <ion-input formControlName="tamanio"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Edad</ion-label>
+        <ion-input formControlName="edad"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-textarea formControlName="descripcion"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Foto</ion-label>
+        <input type="file" (change)="onFileSelected($event)" />
+      </ion-item>
+      <ion-button expand="full" type="submit" [disabled]="!publicacionForm.valid">Crear Publicación</ion-button>
+    </form>
+  </div>
+</ion-content>
+
+<ng-template #desktopView>
+  <ion-content>
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-700">
+            Crear Publicación de Mascota
+          </h2>
+        </div>
+        <form [formGroup]="publicacionForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
+          <input type="hidden" name="remember" value="true">
+          <div class="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label for="titulo" class="sr-only">Título</label>
+              <input id="titulo" type="text" formControlName="titulo" required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Título">
+            </div>
+            <div>
+              <label for="nom_mascota" class="sr-only">Nombre de la Mascota</label>
+              <input id="nom_mascota" type="text" formControlName="nom_mascota" required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Nombre de la Mascota">
+            </div>
+            <div>
+              <label for="especie" class="sr-only">Especie</label>
+              <input id="especie" type="text" formControlName="especie" required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Especie">
+            </div>
+            <div>
+              <label for="raza" class="sr-only">Raza</label>
+              <input id="raza" type="text" formControlName="raza" required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Raza">
+            </div>
+            <div>
+              <label for="sexo" class="sr-only">Sexo</label>
+              <select id="sexo" formControlName="sexo" required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                <option value="M">Macho</option>
+                <option value="H">Hembra</option>
+              </select>
+            </div>
+            <div>
+              <label for="tamanio" class="sr-only">Tamaño</label>
+              <input id="tamanio" type="text" formControlName="tamanio" required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Tamaño">
+            </div>
+            <div>
+              <label for="edad" class="sr-only">Edad</label>
+              <input id="edad" type="text" formControlName="edad" required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Edad">
+            </div>
+            <div>
+              <label for="descripcion" class="sr-only">Descripción</label>
+              <textarea id="descripcion" formControlName="descripcion" rows="4" required
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Descripción"></textarea>
+            </div>
+            <div>
+              <label for="foto_archivo" class="sr-only">Foto</label>
+              <input id="foto_archivo" type="file" (change)="onFileSelected($event)"
+                class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+            </div>
+          </div>
+
+          <div>
+            <button type="submit"
+                class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pricipal-grey-400 hover:bg-principal-blue-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:">
+          Enviar
+        </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ion-content>
+</ng-template>

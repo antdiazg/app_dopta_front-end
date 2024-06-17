@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environments } from 'src/environments/environment';
 
@@ -15,4 +15,10 @@ export class PublicationService {
   }
 
 
+  crearMascotaPublicacion(data: any): Observable<any> {
+    const url = `${this.baseUrl}mascotas/crear-publicacion/`;
+    const token = localStorage.getItem('token-jwt');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(url, {headers});
+  }
 }

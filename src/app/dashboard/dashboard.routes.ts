@@ -7,6 +7,7 @@ import { MapaServiciosPage } from './pages/mapa-servicios/mapa-servicios.page';
 import { SobreNosotrosPage } from './pages/sobre-nosotros/sobre-nosotros.page';
 import { ContactoPage } from './pages/contacto/contacto.page';
 import { MascotasListPage } from './components/mascotas-list/mascotas-list.page';
+import { CrearMascotaPage } from './pages/crear-mascota/crear-mascota.page';
 
 export const routesDashboard: Routes = [
   {
@@ -20,6 +21,7 @@ export const routesDashboard: Routes = [
       { path: 'sobre-nosotros', component: SobreNosotrosPage },
       { path: 'contacto', component: ContactoPage },
       { path: 'mascota-list', component: MascotasListPage },
+      { path: 'crear-mascota', component: CrearMascotaPage }
     ]
   },
   // {
