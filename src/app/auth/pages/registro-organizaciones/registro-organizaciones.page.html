@@ -129,11 +129,25 @@
                 class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
             </div>
 
-            <div>
-              <label for="rut_emp" class="block text-sm font-medium leading-6 text-principal-blue-400">Rut</label>
-              <input formControlName="rut_emp" id="rut_emp" name="rut_emp" type="text" autocomplete="rut_emp" required
-                class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
-            </div>
+
+  <div class="flex w-full">
+    <div class="w-5/6 pr-2">
+      <label for="numrut_org" class="block text-sm font-medium leading-6 text-principal-blue-400">Rut</label>
+      <input formControlName="numrut_org" id="numrut_org" name="numrut_org" type="text" autocomplete="numrut_org" required
+        class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+    </div>
+    <p class="self-center"> - </p>
+    <div class="w-1/6 pl-2">
+      <label for="dv" class="block text-sm font-medium leading-6 text-principal-blue-400">DV</label>
+      <input
+      formControlName="dv"
+      maxlength="1"
+      id="dv" name="dv" type="text" autocomplete="dv" required
+        class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+    </div>
+
+  </div>
+
 
             <div>
               <label for="username" class="block text-sm font-medium leading-6 text-principal-blue-400">Nombre de
@@ -168,7 +182,7 @@
 
             <div>
               <label for="email" class="block text-sm font-medium leading-6 text-principal-blue-400">Email</label>
-              <input formControlName="correo" id="email" name="email" type="email" autocomplete="email" required
+              <input formControlName="email" id="email" name="email" type="email" autocomplete="email" required
                 class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
             </div>
 

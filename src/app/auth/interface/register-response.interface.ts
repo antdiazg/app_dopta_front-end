@@ -1,3 +1,4 @@
+import { User } from "./user.interface";
 
 export interface RegistroPersona {
     user: {
@@ -12,14 +13,12 @@ export interface RegistroPersona {
 }
 
 export interface RegistroOrganizacion {
-  user: {
-      username: string;
-      email: string;
-      password: string;
-  },
+  user: User
   telefono: number;
   direccion: string;
-  rut_emp: string;
+  dv: string;
+  numrut_org: number;
   razon_social: string;
   telefono2: number;
+  imagen_perfil?: string;
 }
