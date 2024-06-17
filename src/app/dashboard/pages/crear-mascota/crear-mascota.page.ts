@@ -2,8 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingController, ToastController, IonicModule } from '@ionic/angular';
-import { PublicationService } from 'src/app/shared/services/publication.service'; // Ajusta la ruta según tu estructura de archivos
-import { MascotaInput } from '../../Interfaces/mascota.interface'; // Ajusta la ruta según tu estructura de archivos
+import { PublicationService } from 'src/app/shared/services/publication.service';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle, IonItem, IonLabel, IonButton } from '@ionic/angular/standalone';
 
 @Component({
@@ -11,11 +10,13 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, Io
   templateUrl: './crear-mascota.page.html',
   styleUrls: ['./crear-mascota.page.scss'],
   standalone: true,
-  imports: [IonButton, IonLabel, IonItem, IonicModule, IonCardSubtitle,
-    IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader,
-    IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [
+    IonButton, IonLabel, IonItem, IonicModule, IonCardSubtitle,
+    IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonContent,
+    IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule
+  ]
 })
-export class CrearMascotaPage implements OnInit, OnDestroy{
+export class CrearMascotaPage implements OnInit, OnDestroy {
   selectedFile: File | null = null;
   isMobileView = false;
   registroError = '';
@@ -33,7 +34,7 @@ export class CrearMascotaPage implements OnInit, OnDestroy{
       nom_mascota: ['', Validators.required],
       especie: ['', Validators.required],
       raza: ['', Validators.required],
-      sexo: ['H', Validators.required], // Valor por defecto 'H'
+      sexo: ['H', Validators.required],
       tamanio: ['', Validators.required],
       edad: ['', Validators.required],
       descripcion: ['', Validators.required]
