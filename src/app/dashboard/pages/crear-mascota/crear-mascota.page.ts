@@ -1,38 +1,95 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonLabel, IonItem, IonButton } from '@ionic/angular/standalone';
-import { PublicationService } from 'src/app/shared/services/publication.service';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoadingController, ToastController, IonicModule } from '@ionic/angular';
+import { PublicationService } from 'src/app/shared/services/publication.service'; // Ajusta la ruta según tu estructura de archivos
+import { MascotaInput } from '../../Interfaces/mascota.interface'; // Ajusta la ruta según tu estructura de archivos
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle, IonItem, IonLabel, IonButton } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-crear-mascota',
   templateUrl: './crear-mascota.page.html',
   styleUrls: ['./crear-mascota.page.scss'],
   standalone: true,
-  imports: [IonButton, IonItem, IonLabel, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule, IonicModule]
+  imports: [IonButton, IonLabel, IonItem, IonicModule, IonCardSubtitle, 
+    IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader,
+    IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class CrearMascotaPage {
-  publicacionForm: FormGroup;
   selectedFile: File | null = null;
-  isMobilView!: boolean;
+  isMobileView = false;
+  registroError = '';
+
+  formularioMascota: FormGroup;
+  mascota: MascotaInput = {
+    titulo: '',
+    nom_mascota: '',
+    especie: '',
+    raza: '',
+    sexo: 'H',
+    tamanio: '',
+    edad: '',
+    foto: '',
+    descripcion: ''
+  };
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private publicationService: PublicationService,
     private loadingController: LoadingController,
     private toastController: ToastController
   ) {
-    this.publicacionForm = this.fb.group({
+    this.formularioMascota = this.formBuilder.group({
       titulo: ['', Validators.required],
       nom_mascota: ['', Validators.required],
       especie: ['', Validators.required],
       raza: ['', Validators.required],
-      sexo: ['', Validators.required],
+      sexo: ['H', Validators.required], // Valor por defecto 'H'
       tamanio: ['', Validators.required],
       edad: ['', Validators.required],
       descripcion: ['', Validators.required]
+    });
+  }
+
+  async onSubmit() {
+    if (this.formularioMascota.invalid) {
+      console.log('Formulario inválido:', this.formularioMascota);
+      return;
+    }
+
+    const loading = await this.loadingController.create({
+      message: 'Guardando publicación...'
+    });
+    await loading.present();
+
+    const formData = new FormData();
+    Object.keys(this.formularioMascota.value).forEach(key => {
+      formData.append(key, this.formularioMascota.value[key]);
+    });
+    if (this.selectedFile) {
+      formData.append('foto_archivo', this.selectedFile);
+    }
+
+    this.publicationService.crearMascotaPublicacion(this.mascota).subscribe({
+      next: async (res) => {
+        console.log("Mascota creada", res);
+        await loading.dismiss();
+        const toast = await this.toastController.create({
+          message: 'Publicación creada con éxito.',
+          duration: 2000
+        });
+        toast.present();
+        this.formularioMascota.reset();
+      },
+      error: async (err) => {
+        console.error("Error al crear la mascota", err);
+        await loading.dismiss();
+        const toast = await this.toastController.create({
+          message: 'Error al crear la publicación.',
+          duration: 2000
+        });
+        toast.present();
+      }
     });
   }
 
@@ -43,51 +100,7 @@ export class CrearMascotaPage {
     }
   }
 
-  async onSubmit() {
-    if (this.publicacionForm.valid) {
-      const loading = await this.loadingController.create({
-        message: 'Guardando publicación...'
-      });
-      await loading.present();
-
-      const formData = new FormData();
-      Object.keys(this.publicacionForm.value).forEach(key => {
-        formData.append(key, this.publicacionForm.value[key]);
-      });
-      if (this.selectedFile) {
-        formData.append('foto_archivo', this.selectedFile);
-      }
-
-      this.publicationService.crearMascotaPublicacion(formData).subscribe({
-        next: 
-        async (res) => {
-          console.log("mascota creada", {res});
-          await loading.dismiss();
-          const toast = await this.toastController.create({
-            message: 'Publicación creada con éxito.',
-            duration: 2000
-          });
-          toast.present();
-        },
-        
-        error: async (err) => {
-          console.log("error al crear mascota", err);
-          await loading.dismiss();
-          const toast = await this.toastController.create({
-            message: 'Error al crear la publicación.',
-            duration: 2000
-          });
-          toast.present();
-        }
-      });
-    }
-  }
-
   checkScreenWidth(): void {
-    if (window.innerWidth <= 768) {
-      this.isMobilView = true;
-    } else {
-      this.isMobilView = false;
-    }
+    this.isMobileView = window.innerWidth <= 768;
   }
 }

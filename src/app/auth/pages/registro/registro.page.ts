@@ -58,19 +58,6 @@ export class RegistroPage implements OnInit {
 
 
   ngOnInit(): void {
-    // this.formularioRegistro = this.fb.group({
-    //   username: ['',Validators.required],
-    //   password: ['',Validators.required],
-    //   // confirmPassword: ['',Validators.required],
-    //   email: ['',Validators.required],
-    //   telefono: ['',Validators.required],
-    //   direccion: ['',Validators.required],
-    //   nombre: ['',Validators.required],
-    //   apellido: ['',Validators.required],
-    //   // 'fechaNacimiento': new FormControl("",Validators.required), //TODO: hay que agregarlo en el backend o hacer validacion
-    // })
-
-
     this.checkScreenWidth();
     window.addEventListener('resize', () => {
       this.checkScreenWidth();
@@ -81,12 +68,7 @@ export class RegistroPage implements OnInit {
 
     if (this.formularioRegistro.invalid) return;
     console.log("Datos del formulario:", this.currentPerson);
-    // if ( this.currentPerson.user.email ){
-    //   console.log("Ya existe el usuario");
-    //   console.error("Usuario existe en la base de datos");
-    //   return;
-    // }
-
+ 
     this.authService.addPerson(this.currentPerson)
       .subscribe({
         next: (RegisterResponse) => {
@@ -103,38 +85,6 @@ export class RegistroPage implements OnInit {
 
   }
 
-  // onSubmit(): void{
-
-  //   if ( this.formularioRegistro.invalid) return;
-  //   console.log("Datos del formulario:", this.currentPerson);
-
-  //   this.authService.personExists(this.currentPerson.user.email)
-  //     .subscribe({
-  //       next: exists => {
-  //         if ( exists ) {
-  //           console.log("Ya existe el usuario");
-  //           console.error("Usuario existe en la base de datos");
-  //           this.registroError = "Usuario ya existe en la base de datos";
-  //         }else {
-  //           this.authService.addPerson(this.currentPerson)
-  //             .subscribe({
-  //               next: persona => {
-  //                 console.log("Persona creada en la base de datos!!");
-  //                 this.router.navigate(['/login']);
-  //               },
-  //               error: err => {
-  //                 console.error("Error al crear la persona", err);
-  //                 this.registroError = 'Error al crear la persona';
-  //               }
-  //             });
-  //         }
-  //       },
-  //       error: err => {
-  //         console.error("Error al verificar el usuario", err);
-  //         this.registroError = 'Error al verificar el usuario';
-  //       }
-  //     });
-  // }
 
   checkScreenWidth() {
     if (window.innerWidth <= 768) {
