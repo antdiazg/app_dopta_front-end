@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingController, ToastController, IonicModule } from '@ionic/angular';
@@ -11,11 +11,11 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, Io
   templateUrl: './crear-mascota.page.html',
   styleUrls: ['./crear-mascota.page.scss'],
   standalone: true,
-  imports: [IonButton, IonLabel, IonItem, IonicModule, IonCardSubtitle, 
+  imports: [IonButton, IonLabel, IonItem, IonicModule, IonCardSubtitle,
     IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader,
     IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class CrearMascotaPage implements OnInit {
+export class CrearMascotaPage implements OnInit, OnDestroy{
   selectedFile: File | null = null;
   isMobileView = false;
   registroError = '';
