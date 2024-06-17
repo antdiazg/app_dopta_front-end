@@ -17,12 +17,24 @@
           </div>
         </div>
 
-        <div>
-          <label for="rut_emp" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Rut</label>
+        <div class="flex w-72" >
+        <div class="w-5/6 pr-2">
+          <label for="numrut_org" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Rut</label>
           <div class="mt-1">
-            <input formControlName="rut_emp" id="rut_emp" name="rut_emp" type="text" required
-              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+            <input formControlName="numrut_org" id="numrut_org" name="numrut_org" type="text" required
+              class="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
+        </div>
+        <p class="self-center"> - </p>
+        <div class="w-1/6 pl-2">
+          <label for="dv" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">DV</label>
+          <div class="mt-1">
+            <input formControlName="dv" id="dv"
+              maxlength="1"
+              name="dv" type="text" required
+              class="block w-full pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
+        </div>
         </div>
 
         <div>
