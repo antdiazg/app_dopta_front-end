@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingController, ToastController, IonicModule } from '@ionic/angular';
@@ -15,23 +15,12 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, Io
     IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonContent, IonHeader,
     IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class CrearMascotaPage {
+export class CrearMascotaPage implements OnInit {
   selectedFile: File | null = null;
   isMobileView = false;
   registroError = '';
 
   formularioMascota: FormGroup;
-  mascota: MascotaInput = {
-    titulo: '',
-    nom_mascota: '',
-    especie: '',
-    raza: '',
-    sexo: 'H',
-    tamanio: '',
-    edad: '',
-    foto: '',
-    descripcion: ''
-  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,6 +38,15 @@ export class CrearMascotaPage {
       edad: ['', Validators.required],
       descripcion: ['', Validators.required]
     });
+  }
+
+  ngOnInit() {
+    this.checkScreenWidth();
+    window.addEventListener('resize', this.checkScreenWidth.bind(this));
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.checkScreenWidth.bind(this));
   }
 
   async onSubmit() {
@@ -70,7 +68,7 @@ export class CrearMascotaPage {
       formData.append('foto_archivo', this.selectedFile);
     }
 
-    this.publicationService.crearMascotaPublicacion(this.mascota).subscribe({
+    this.publicationService.crearMascotaPublicacion(formData).subscribe({
       next: async (res) => {
         console.log("Mascota creada", res);
         await loading.dismiss();
