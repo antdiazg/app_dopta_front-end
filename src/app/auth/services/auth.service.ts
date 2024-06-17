@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { LoginResponse, User } from '../interface';
 import { Observable, catchError, delay, map, tap, throwError } from 'rxjs';
@@ -51,9 +51,9 @@ export class AuthService {
         this.setAuthentication(response.user, response.access);
         console.log(response.user, response.access);
       }),
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         console.error('Login error:', error);
-        return throwError(() => error.error.message);
+        return throwError(error); // Reenviar el error para ser manejado en el componente
       })
     );
   };

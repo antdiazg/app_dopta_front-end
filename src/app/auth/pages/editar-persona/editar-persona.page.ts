@@ -71,7 +71,6 @@ export class EditarPersonaPage implements OnInit {
       this.imgPerfil = target.files[0];
     }
   }
-
   onDocumentSelected(event: Event): void {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
@@ -90,20 +89,24 @@ export class EditarPersonaPage implements OnInit {
       if (this.imgPerfil) {
         formData.append('imagen_perfil', this.imgPerfil);
       }
-
       if (this.documento) {
         formData.append('documento', this.documento);
       }
-
       this.authService.updateUser(formData)
         .subscribe(response => {
           console.log('Persona Actualizada correctamente :', response);
+          setTimeout(() => {
+            window.location.reload();
+          }, 4000);
         });
-      window.location.reload()
+
     }
 
   }
 
+  volver():void {
+    window.location.reload();
+  }
   checkScreenWidth(): void {
     if (window.innerWidth <= 768) {
       this.isMobilView = true;
@@ -111,5 +114,4 @@ export class EditarPersonaPage implements OnInit {
       this.isMobilView = false;
     }
   }
-
 }
