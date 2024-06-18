@@ -4,6 +4,7 @@ import { RecuperacionContraseniaPage } from './pages/recuperacion-contrasenia/re
 import { RegistroOrganizacionesPage } from './pages/registro-organizaciones/registro-organizaciones.page';
 import { RegistroPage } from './pages/registro/registro.page';
 import { EditarPersonaPage } from './pages/editar-persona/editar-persona.page';
+import { EditarOrganizacionPage } from './pages/editar-organizacion/editar-organizacion.page';
 
 export const routesAuth: Routes = [
 
@@ -12,6 +13,7 @@ export const routesAuth: Routes = [
   { path: 'registro-organizaciones', component: RegistroOrganizacionesPage},
   { path: 'recuperacion-contrasenia', component: RecuperacionContraseniaPage},
   { path: 'editar-persona', component: EditarPersonaPage},
+  { path: 'editar-organizacion', component: EditarOrganizacionPage},
   {
     path: '',
     redirectTo: 'login',

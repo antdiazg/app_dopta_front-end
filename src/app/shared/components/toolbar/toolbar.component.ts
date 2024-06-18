@@ -40,6 +40,11 @@ export class ToolbarComponent implements OnInit {
     window.location.href = `${environments.BASE_URL}/auth/editar-persona`
     this.toolBarService.toggleProfileIcon();
   }
+  toggleProfileOrganization() {
+
+    window.location.href = `${environments.BASE_URL}/auth/editar-organizacion`
+    this.toolBarService.toggleProfileIcon();
+  }
 
   toggleProfileIcon() {
     this.toolBarService.toggleProfileIcon();
