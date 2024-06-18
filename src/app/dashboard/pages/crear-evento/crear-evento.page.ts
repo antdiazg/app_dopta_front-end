@@ -82,6 +82,10 @@ export class CrearEventoPage implements OnInit, OnDestroy {
   }
 
   checkScreenWidth(): void {
-    this.isMobileView = window.innerHeight <= 768;
+    if (window.innerWidth <= 768) {
+      this.isMobileView = true;
+    } else {
+      this.isMobileView = false;
+    }
   }
 }

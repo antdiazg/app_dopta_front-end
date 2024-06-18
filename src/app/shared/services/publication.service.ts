@@ -36,4 +36,14 @@ export class PublicationService {
     return this.http.post(url, formData, {headers});
   }
 
+  // Crear publicación de Servicio
+  crearServicioPublicacion(formData: FormData): Observable<any> {
+    const url = `${this.baseUrl}servicios/crear-publicacion/`;
+    const token = localStorage.getItem('token-jwt');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(url, formData, {headers});
+  }
+
 }
