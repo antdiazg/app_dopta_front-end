@@ -5,7 +5,7 @@ import { Observable, catchError, delay, map, tap, throwError } from 'rxjs';
 import { RegistroOrganizacion, RegistroPersona } from '../interface/register-response.interface';
 import { AuthStatus } from '../enums/auth-status.enum';
 import { environments } from 'src/environments/environment';
-import { Organizacion } from '../interface/user.interface';
+import { Organizacion, Persona } from '../interface/user.interface';
 
 
 
@@ -74,11 +74,26 @@ export class AuthService {
     )
   }
 
-  updateUser(user: FormData): Observable<User> {
+  updateUser(user: FormData): Observable<Persona> {
     const url = `${this.baseUrl}user/perfil/`;
     const token = localStorage.getItem('token-jwt');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.put<User>(url, user, { headers }).pipe(
+    return this.http.put<Persona>(url, user, { headers }).pipe(
+      tap(response => {
+        console.log('User updated:', response);
+      }),
+      catchError(error => {
+        console.error('Update error:', error);
+        return throwError(() => error);
+      })
+
+    );
+  }
+  updateOrganizacion(user: FormData): Observable<Organizacion> {
+    const url = `${this.baseUrl}user/perfil/`;
+    const token = localStorage.getItem('token-jwt');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<Organizacion>(url, user, { headers }).pipe(
       tap(response => {
         console.log('User updated:', response);
       }),
@@ -90,9 +105,6 @@ export class AuthService {
     );
   }
 
-  updateOrganizacion(organizacion: Organizacion): Observable<Organizacion> {
-    return this.http.put<Organizacion>(`${this.baseUrl}user/perfil/`, organizacion);
-  }
 
   logout() {
     localStorage.removeItem('token-jwt');

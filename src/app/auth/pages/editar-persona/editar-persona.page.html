@@ -76,30 +76,15 @@
               class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
-
-
-        <!-- <div>
-        <div class="flex items-center justify-between">
-          <label
-            for="password"
-            class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-            >Contraseña</label
-          >
-        </div>
-        <div class="mt-1">
-          <input
-            formControlName="confirmPassword"
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            required
-            class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-        </div>
-          <div class="text-errors-red-300" *ngIf="formularioRegistro.hasError('notSame')">
-            La contraseña no coincide
+        
+        <div>
+          <label for="imagen_perfil" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Imagen de perfil</label>
+          <div class="mt-1">
+            <input id="imagen_perfil" name="imagen_perfil" (change)="onImgSelected($event)" type="file"
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
-      </div> -->
+        </div>
+
 
         <div class="container-fb flex items-center justify-items-center">
           <button type="submit"
