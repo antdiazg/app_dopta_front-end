@@ -28,7 +28,7 @@ export class PublicationService {
 
   // Crear publicación de Evento
   crearEventoPublicacion(formData: FormData): Observable<any> {
-    const url = `${this.baseUrl}eventos/crear-evento/`;
+    const url = `${this.baseUrl}eventos/crear-publicacion/`;
     const token = localStorage.getItem('token-jwt');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`

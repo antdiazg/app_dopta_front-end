@@ -63,6 +63,64 @@
 <!-- Diseño para Escritorio -->
 <ng-template #desktopView>
   <ion-content [fullscreen]="true">
-    <!-- Aquí puedes replicar el diseño de escritorio similar al que tienes para la página de mascotas si es necesario -->
+    <div class="mt-4 text-red-600" *ngIf="registroError">
+      {{ registroError }}
+    </div>
+    <div class="container flex flex-col justify-center items-center mt-4 py-3">
+      <div class="container-logo flex">
+        <img src="../../../../assets/icon/Logo_AppDopta.jpeg" alt="Logo App Dopta" class="h-20 w-20" />
+        <ion-title size="large" class="text-4xl text-principal-grey-700">Crear Evento</ion-title>
+      </div>
+      <div class="container-formulario">
+        <form [formGroup]="formularioEvento" (ngSubmit)="onSubmit()" class="space-y-6 mt-8 w-96">
+          <div>
+            <label for="titulo" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Título</label>
+            <div class="mt-2">
+              <input formControlName="titulo" id="titulo" name="titulo" type="text" required
+                class="block w-full pl-2 rounded-md py-1.5 text-principal-grey-700 shadow-sm ring-1 ring-inset ring-principal-grey-400 placeholder:text-principal-grey-400 focus:ring-2 focus:ring-inset focus:ring-principal-grey-700 sm:text-sm sm:leading-6" />
+            </div>
+          </div>
+
+          <div>
+            <label for="nombre" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Nombre</label>
+            <div class="mt-2">
+              <input formControlName="nombre" id="nombre" name="nombre" type="text" required
+                class="block w-full pl-2 rounded-md py-1.5 text-principal-grey-700 shadow-sm ring-1 ring-inset ring-principal-grey-400 placeholder:text-principal-grey-400 focus:ring-2 focus:ring-inset focus:ring-principal-grey-700 sm:text-sm sm:leading-6" />
+            </div>
+          </div>
+
+          <div>
+            <label for="localizacion" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Localización</label>
+            <div class="mt-2">
+              <input formControlName="localizacion" id="localizacion" name="localizacion" type="text" required
+                class="block w-full pl-2 rounded-md py-1.5 text-principal-grey-700 shadow-sm ring-1 ring-inset ring-principal-grey-400 placeholder:text-principal-grey-400 focus:ring-2 focus:ring-inset focus:ring-principal-grey-700 sm:text-sm sm:leading-6" />
+            </div>
+          </div>
+
+          <div>
+            <label for="fec_evento" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Fecha del Evento</label>
+            <div class="mt-2">
+              <input formControlName="fec_evento" id="fec_evento" name="fec_evento" type="date" required
+                class="block w-full pl-2 rounded-md py-1.5 text-principal-grey-700 shadow-sm ring-1 ring-inset ring-principal-grey-400 placeholder:text-principal-grey-400 focus:ring-2 focus:ring-inset focus:ring-principal-grey-700 sm:text-sm sm:leading-6" />
+            </div>
+          </div>
+
+          <div>
+            <label for="descripcion" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Descripción</label>
+            <div class="mt-2">
+              <ion-textarea formControlName="descripcion" id="descripcion" name="descripcion" required
+                class="block w-full rounded-md py-1.5 text-principal-grey-700 shadow-sm ring-1 ring-inset ring-principal-grey-400 placeholder:text-principal-grey-400 focus:ring-2 focus:ring-inset focus:ring-principal-grey-700 sm:text-sm sm:leading-6"></ion-textarea>
+            </div>
+          </div>
+
+          <div class="flex justify-center mt-6">
+            <button type="submit"
+              class="w-full py-3 rounded-3xl bg-principal-blue-400 text-white font-bold text-lg hover:bg-principal-blue-600 transition-colors duration-300">
+              Crear Evento
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </ion-content>
 </ng-template>
