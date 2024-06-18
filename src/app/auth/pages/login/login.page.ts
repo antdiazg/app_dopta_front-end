@@ -55,6 +55,10 @@ export class LoginPage implements OnInit {
       password: ['', Validators.required]
     });
 
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+
     this.checkScreenWidth();
     window.addEventListener('resize', () => {
       this.checkScreenWidth();

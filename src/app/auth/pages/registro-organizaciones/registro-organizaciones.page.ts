@@ -62,6 +62,9 @@ export class RegistroOrganizacionesPage implements OnInit {
     window.addEventListener('resize', () => {
       this.checkScreenWidth();
     });
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']); 
+    }
   }
 
   onSubmit(): void {
