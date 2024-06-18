@@ -1,0 +1,23 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.container-logo {
+  @apply flex justify-center items-center mt-6;
+}
+
+.container-formulario {
+  @apply w-full max-w-md;
+}
+
+.container-fb {
+  @apply mt-4 flex justify-center items-center;
+}
+
+input[type='file'] {
+  @apply mt-2;
+}
+
+button {
+  @apply w-full py-3 rounded-3xl bg-principal-blue-400 text-white font-bold text-lg hover:bg-principal-blue-600 transition-colors duration-300;
+}
