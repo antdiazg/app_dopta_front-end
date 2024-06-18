@@ -16,7 +16,11 @@ module.exports = {
       'errors-red-300': '#ff9898'
 
     },
-    extend: {},
+    extend: {
+      spacing: {
+        '1.25': '5px',
+      },
+    },
   },
   plugins: [],
 }

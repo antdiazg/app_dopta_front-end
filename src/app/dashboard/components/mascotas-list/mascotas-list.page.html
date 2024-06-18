@@ -1,40 +1,25 @@
 <ion-content>
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4" [ngClass]="{' md:mt-32  lg:mt-32': true}">
     <div *ngFor="let mascota of mascotas">
-      <div
-        class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
-        <a href="#">
-          <div class="aspect-w-1 aspect-h-1 ">
-            <img class="object-contain w-100 h-100 rounded-t-lg"
-              [src]="mascota.foto ? mascota.foto : '../../../assets/icon/Logo_AppDopta.jpeg'"
-              alt="Imagen de {{ mascota.nom_mascota }}" />
-          </div>
-        </a>
-        <div class="flex-grow p-5">
-          <p class="mb-2 font-bold text-gray-700 dark:text-gray-400">
-            {{mascota.especie}} - {{ mascota.edad }}
-          </p>
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ mascota.titulo |
-            uppercase }}</h5>
-          <p class="mb-2 font-medium text-gray-700 dark:text-gray-400">
-            Nombre: {{ mascota.nom_mascota }}
-          </p>
-
-          <p class="mb-2 font-medium text-gray-700 dark:text-gray-400">
-            Usuario: {{ mascota.usuario.username }}
-            <br>
-            Email:    {{ mascota.usuario.email }}
-          </p>
-
-
-          <button
-          type="submit"
-          class="w-full py-3 bg-pricipal-grey-400 text-white rounded-full shadow-md hover:bg-pricipal-grey-400 transition duration-300"
-        >
-          Detalles
-        </button>
+      <ion-card class="flex flex-col">
+        <div class="relative w-full" style="padding-top: 100%;">
+          <img class="absolute inset-0 w-full h-full object-cover" alt="Imagen de {{ mascota.nom_mascota }}"
+            [src]="mascota.foto ? mascota.foto : '../../../assets/icon/Logo_AppDopta.jpeg'" />
         </div>
-      </div>
+        <ion-card-header>
+          <ion-card-subtitle>{{ mascota.especie }} - {{ mascota.edad }}</ion-card-subtitle>
+          <ion-card-title>{{ mascota.titulo | uppercase }}</ion-card-title>
+          <ion-card-subtitle>Nombre: {{ mascota.nom_mascota }}</ion-card-subtitle>
+          <ion-card-subtitle>Fecha de publicación: {{ mascota.fec_public | slice: 0:10 }} </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content class="flex-grow flex flex-col items-center">
+          <button
+            class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-4 w-48">
+            Ver Detalle
+          </button>
+        </ion-card-content>
+      </ion-card>
     </div>
   </div>
 </ion-content>
