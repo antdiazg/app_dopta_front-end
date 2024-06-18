@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
     });
 
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/dashboard']);
+      window.location.href = `${environments.BASE_URL}/dashboard/`
     }
 
     this.checkScreenWidth();

@@ -63,7 +63,7 @@ export class RegistroPage implements OnInit {
       this.checkScreenWidth();
     });
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/dashboard']); 
+      window.location.href = `${environments.BASE_URL}/dashboard/` 
     }
   }
 
