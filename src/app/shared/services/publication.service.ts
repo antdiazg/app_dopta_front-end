@@ -11,9 +11,24 @@ export class PublicationService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerMascotas(): Observable<any> {
-    return this.http.get(`${this.baseUrl}mascotas/lista-publicaciones/`);
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token-jwt'); // O la forma en que obtienes el token
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    if (token) {
+      headers = headers.append('Authorization', `Bearer ${token}`);
+    }
+
+    return headers;
   }
+
+  obtenerMascotas(): Observable<any> {
+    return this.http.get(`${this.baseUrl}mascotas/lista-publicaciones/`, { headers: this.getHeaders() });
+  }
+
+
 
   obtenerEventos(): Observable<any> {
     return this.http.get(`${this.baseUrl}eventos/lista-publicaciones/`);
