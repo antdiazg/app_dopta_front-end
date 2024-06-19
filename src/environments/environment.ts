@@ -6,7 +6,7 @@ export const environments = {
   BASE_URL: "http://localhost:8100",
   URL_USER: 'http://alb-appdoptauser-1760123330.us-east-1.elb.amazonaws.com/',
   URL_POST: 'http://alb-appdoptapost-245125318.us-east-1.elb.amazonaws.com/'
-  // URL_POST: 'http://127.0.0.1:8000/'
+  //URL_POST: 'http://127.0.0.1:8000/'
 };
 
 /*
