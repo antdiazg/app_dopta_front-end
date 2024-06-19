@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit, computed, inject, signal } from '
 import { ToolBarService } from '../../services/tool-bar.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Router } from '@angular/router';
-import { IonicModule,  } from '@ionic/angular';
+import { IonicModule, } from '@ionic/angular';
 import { User, Persona } from 'src/app/auth/interface';
 import { CommonModule } from '@angular/common';
 import { environments } from 'src/environments/environment';
@@ -78,7 +78,7 @@ export class ToolbarComponent implements OnInit {
         if (response && response.user && response.user.username) {
           console.log({ response });
           this.currentUser = response;
-          this.cdr.markForCheck(); // Forzar la detección de cambios
+          this.cdr.markForCheck();
         } else {
           console.error('Invalid user profile response', response);
         }
