@@ -15,6 +15,14 @@ export class PublicationService {
     return this.http.get(`${this.baseUrl}mascotas/lista-publicaciones/`);
   }
 
+  obtenerEventos(): Observable<any> {
+    return this.http.get(`${this.baseUrl}eventos/lista-publicaciones/`);
+  }
+
+  obtenerServicios(): Observable<any> {
+    return this.http.get(`${this.baseUrl}servicios/lista-publicaciones/`);
+  }
+
   // Crear publicación de Mascota
   crearMascotaPublicacion(formData: FormData): Observable<any> {
     const url = `${this.baseUrl}mascotas/crear-publicacion/`;
