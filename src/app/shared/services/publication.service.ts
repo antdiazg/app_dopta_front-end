@@ -28,6 +28,10 @@ export class PublicationService {
     return this.http.get(`${this.baseUrl}mascotas/lista-publicaciones/`, { headers: this.getHeaders() });
   }
 
+  obtenerMascotaPorId(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}mascotas/lista-publicaciones/${id}/`, { headers: this.getHeaders() });
+  }
+
   obtenerEventos(): Observable<any> {
     return this.http.get(`${this.baseUrl}eventos/lista-publicaciones/`);
   }

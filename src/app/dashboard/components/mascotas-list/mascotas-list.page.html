@@ -9,7 +9,7 @@
 
 <ion-content>
   <div class="mb-48 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-    <div *ngFor="let mascota of mascotas">
+    <div *ngFor="let mascota of filteredMascotas">
       <ion-card class="flex flex-col">
         <div class="relative w-full" style="padding-top: 100%;">
           <img class="absolute inset-0 w-full h-full object-cover" alt="Imagen de {{ mascota.nom_mascota }}"
@@ -29,7 +29,7 @@
           <ion-card-subtitle>Fecha de publicación: {{ mascota.fec_public | slice: 0:10 }} </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content class="flex-grow flex flex-col items-center">
-          <button class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-4 w-48">
+          <button (click)="verDetalle(mascota)" class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-4 w-48">
             Ver Detalle
           </button>
         </ion-card-content>
