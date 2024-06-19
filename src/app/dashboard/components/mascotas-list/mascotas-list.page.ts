@@ -84,7 +84,7 @@ export class MascotasListPage implements OnInit {
   async AgregarFavAlert(): Promise<void> {
     const alert = await this.alertController.create({
       header: '¡Listo!',
-      message: 'Mascota Agregada de favoritos',
+      message: 'Mascota Agregada a favoritos',
     });
 
     await alert.present();
