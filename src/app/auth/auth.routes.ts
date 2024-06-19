@@ -5,19 +5,16 @@ import { RegistroOrganizacionesPage } from './pages/registro-organizaciones/regi
 import { RegistroPage } from './pages/registro/registro.page';
 import { EditarPersonaPage } from './pages/editar-persona/editar-persona.page';
 import { EditarOrganizacionPage } from './pages/editar-organizacion/editar-organizacion.page';
-
 export const routesAuth: Routes = [
 
-  { path: 'login', component: LoginPage,},
-  { path: 'registro', component: RegistroPage},
-  { path: 'registro-organizaciones', component: RegistroOrganizacionesPage},
-  { path: 'recuperacion-contrasenia', component: RecuperacionContraseniaPage},
-  { path: 'editar-persona', component: EditarPersonaPage},
-  { path: 'editar-organizacion', component: EditarOrganizacionPage},
+  { path: 'login', component: LoginPage, },
+  { path: 'registro', component: RegistroPage },
+  { path: 'registro-organizaciones', component: RegistroOrganizacionesPage },
+  { path: 'recuperacion-contrasenia', component: RecuperacionContraseniaPage },
+  { path: 'editar-persona', component: EditarPersonaPage },
+  { path: 'editar-organizacion', component: EditarOrganizacionPage },
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: '', redirectTo: 'login', pathMatch: 'full'
   }
 
 

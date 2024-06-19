@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { environments } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
@@ -41,12 +41,15 @@ export class LoginPage implements OnInit {
   formularioLogin!: FormGroup;
   loginError: string = '';
   isMobilView!: boolean;
+  activationSuccess: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +65,13 @@ export class LoginPage implements OnInit {
     this.checkScreenWidth();
     window.addEventListener('resize', () => {
       this.checkScreenWidth();
+    });
+
+    this.route.queryParams.subscribe(params => {
+      this.activationSuccess = params['activation'] === 'success';
+      if (this.activationSuccess) {
+        this.presentActivationAlert();
+      }
     });
   }
 
@@ -133,6 +143,15 @@ export class LoginPage implements OnInit {
     }, 5000); // 5000 milisegundos = 5 segundos
   }
 
+  async presentActivationAlert() {
+    const alert = await this.alertController.create({
+      header: '¡Cuenta activada!',
+      message: 'Tu cuenta ha sido activada correctamente.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 
   navigateToHome(): void {
     // Redirige a la página principal después de cerrar la alerta
