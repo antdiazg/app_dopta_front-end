@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Restablecer Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="resetPasswordForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nueva Contraseña</ion-label>
+      <ion-input type="password" formControlName="newPassword"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input type="password" formControlName="confirmNewPassword"></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit" [disabled]="!resetPasswordForm.valid">Restablecer</ion-button>
+  </form>
+</ion-content>
+
+
