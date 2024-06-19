@@ -1,5 +1,5 @@
 <section [ngClass]="{' md:mb-32  lg:mb-32': true}"></section>
-<div *ngIf="isLoggedIn()" class="grid grid-cols-1">
+<div *ngIf="!currentUser.nombre" class="grid grid-cols-1">
   <div class=" items-center w-screen">
 
     <button (click)="navigateTo('dashboard/crear-evento')" class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full w-full mt-2 mb-2">
