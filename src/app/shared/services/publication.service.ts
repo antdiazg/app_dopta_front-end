@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environments } from 'src/environments/environment';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class PublicationService {
   constructor(private http: HttpClient) { }
 
   private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token-jwt'); // O la forma en que obtienes el token
+    const token = localStorage.getItem('token-jwt');
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -27,8 +27,6 @@ export class PublicationService {
   obtenerMascotas(): Observable<any> {
     return this.http.get(`${this.baseUrl}mascotas/lista-publicaciones/`, { headers: this.getHeaders() });
   }
-
-
 
   obtenerEventos(): Observable<any> {
     return this.http.get(`${this.baseUrl}eventos/lista-publicaciones/`);
@@ -56,7 +54,7 @@ export class PublicationService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post(url, formData, {headers});
+    return this.http.post(url, formData, { headers });
   }
 
   // Crear publicación de Servicio
@@ -66,7 +64,7 @@ export class PublicationService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post(url, formData, {headers});
+    return this.http.post(url, formData, { headers });
   }
 
 }

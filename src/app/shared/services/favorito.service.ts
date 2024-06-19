@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environments } from 'src/environments/environment';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class FavoritoService {
   constructor(private http: HttpClient) { }
 
   private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token-jwt'); // O la forma en que obtienes el token
-    const headers = new HttpHeaders()
+    const token = localStorage.getItem('token-jwt');
+    const headers = new HttpHeaders();
     if (token) {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
       return headers;
@@ -22,8 +22,13 @@ export class FavoritoService {
   }
 
   addFavorito(mascotaId: number): Observable<any> {
-    console.log('entrando...');
-    return this.http.post(`${this.apiUrl}favoritos/agregar/mascota/${mascotaId}`, { headers: this.getHeaders() });
+    const headers = this.getHeaders();
+    return this.http.post<any>(`${this.apiUrl}favoritos/agregar/mascota/${mascotaId}`, {}, { headers })
+      .pipe(
+        tap(response => {
+          console.log(response);
+        })
+      );
   }
 
   removeFavorito(mascotaId: number): Observable<any> {

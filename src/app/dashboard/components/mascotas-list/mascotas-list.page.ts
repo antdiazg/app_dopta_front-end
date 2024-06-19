@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, IonIcon } from '@ionic/angular';
@@ -25,12 +25,14 @@ export class MascotasListPage implements OnInit {
   mascotas: Mascota[] = [];
   usuarios: User[] = [];
   private router: Router = inject(Router);
+  public currentUser!: User;
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
   constructor(
     private publicationService: PublicationService,
     private authService: AuthService,
     private favoritoService: FavoritoService
-  ) { 
+  ) {
     // Registrar iconos
     addIcons({
       'heart': heart,
@@ -60,16 +62,17 @@ export class MascotasListPage implements OnInit {
   toggleFavorito(mascota: Mascota) {
     if (mascota.is_favorito) {
       this.favoritoService.removeFavorito(mascota.id).subscribe(() => {
+        mascota.is_favorito = false;
       }, error => {
         console.error('Error al remover favorito:', error);
       });
     } else {
       this.favoritoService.addFavorito(mascota.id).subscribe(() => {
+        mascota.is_favorito = true;
       }, error => {
         console.error('Error al agregar favorito:', error);
       });
     }
   }
 
- 
 }
