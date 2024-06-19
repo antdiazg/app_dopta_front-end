@@ -11,7 +11,7 @@
         <div>
           <label for="nombre" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Nombre</label>
           <div class="mt-1">
-            <input formControlName="nombre" id="nombre" name="nombre" [value]="user.nombre" type="text" required
+            <input id="nombre" name="nombre" [value]="user.nombre" [attr.disabled]="true" type="text"
               class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
@@ -19,7 +19,7 @@
           <label for="apellido"
             class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Apellido</label>
           <div class="mt-1">
-            <input formControlName="apellido" id="apellido" name="apellido" [value]="user.apellido" type="text" required
+            <input id="apellido" name="apellido" [value]="user.apellido" [attr.disabled]="true" type="text"
               class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
@@ -40,24 +40,15 @@
               class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
-
-        <!-- <div>
-        <label
-          for="fechaNacimiento"
-          class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400"
-          >Fecha de nacimiento</label
-        >
-        <div class="mt-1">
-          <input
-            formControlName="fechaNacimiento"
-            id="fechaNacimiento"
-            name="fechaNacimiento"
-            type="date"
-            required
-            class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+        <div>
+          <label for="fec_nac"
+            class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Fecha de nacimiento</label>
+          <div class="mt-1">
+            <input id="fec_nac" name="fec_nac" [value]="user.fec_nac" type="text" [attr.disabled]="true"
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
         </div>
-      </div> -->
+
 
         <div>
           <label for="direccion"
@@ -76,11 +67,19 @@
               class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
-        
+
         <div>
           <label for="imagen_perfil" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Imagen de perfil</label>
           <div class="mt-1">
             <input id="imagen_perfil" name="imagen_perfil" (change)="onImgSelected($event)" type="file"
+              class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+          </div>
+        </div>
+
+        <div>
+          <label for="documento" class="block ml-1 text-sm font-medium leading-6 text-principal-blue-400">Documento</label>
+          <div class="mt-1">
+            <input id="documento" name="documento" (change)="onDocumentSelected($event)" type="file"
               class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
           </div>
         </div>
@@ -171,7 +170,7 @@
                 class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
             </div>
             <div>
-              <label for="fecha nacimiento" class="block text-sm font-medium leading-6 text-principal-blue-400">Fecha de
+              <label for="fec_nac" class="block text-sm font-medium leading-6 text-principal-blue-400">Fecha de
                 nacimiento</label>
               <input id="fec_nac" name="fec_nac" [attr.disabled]="true" [value]="user.fec_nac"
                 type="text" required
