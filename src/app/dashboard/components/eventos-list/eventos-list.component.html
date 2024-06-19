@@ -15,6 +15,8 @@
     <div *ngFor="let evento of eventos">
       <ion-card class="flex flex-col">
         <div class="relative w-full" style="padding-top: 100%;">
+          <img class="absolute inset-0 w-full h-full object-cover" alt="Imagen de {{ evento.titulo }}"
+            src="../../../../assets/icon/Logo_AppDopta.jpeg" />
         </div>
         <ion-card-header>
           <ion-card-title>{{ evento.titulo | uppercase }}</ion-card-title>

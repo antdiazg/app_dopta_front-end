@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { environments } from 'src/environments/environment';
 
 
+
 @Component({
   selector: 'app-toolbar',
   standalone: true,
@@ -16,7 +17,9 @@ import { environments } from 'src/environments/environment';
   styles: ``
 })
 export class ToolbarComponent implements OnInit {
+
   // @Input() routesDashboard!: SidebarRoutes[];
+  public defaultImageURL = ('assets/icon/Logo_AppDopta.jpeg');
   isMobilView!: boolean;
   private toolBarService: ToolBarService = inject(ToolBarService);
   private authService: AuthService = inject(AuthService);
