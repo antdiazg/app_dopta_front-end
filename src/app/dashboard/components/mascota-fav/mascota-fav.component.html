@@ -1,12 +1,4 @@
 <section [ngClass]="{'md:mb-32 lg:mb-32': true}"></section>
-<div *ngIf="isLoggedIn()" class="grid grid-cols-1">
-  <div class="items-center w-screen">
-    <button (click)="navigateTo('dashboard/crear-mascota')" class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full w-full mt-2 mb-2">
-      Publicar Mascota
-    </button>
-  </div>
-</div>
-
 <ion-content>
   <div class="mb-48 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
     <div *ngFor="let mascota of mascotas">

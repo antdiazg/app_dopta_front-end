@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, IonIcon } from '@ionic/angular';
+import { IonicModule, AlertController } from '@ionic/angular';
 import { PublicationService } from 'src/app/shared/services/publication.service';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle, IonButton } from '@ionic/angular/standalone';
 import { Mascota } from '../../Interfaces/mascota.interface';
@@ -31,7 +31,9 @@ export class MascotasListPage implements OnInit {
   constructor(
     private publicationService: PublicationService,
     private authService: AuthService,
-    private favoritoService: FavoritoService
+    private favoritoService: FavoritoService,
+    private alertController: AlertController
+
   ) {
     // Registrar iconos
     addIcons({
@@ -63,16 +65,46 @@ export class MascotasListPage implements OnInit {
     if (mascota.is_favorito) {
       this.favoritoService.removeFavorito(mascota.id).subscribe(() => {
         mascota.is_favorito = false;
+        this.EliminarFavAlert();
+        this.cdr.detectChanges();
       }, error => {
         console.error('Error al remover favorito:', error);
       });
     } else {
       this.favoritoService.addFavorito(mascota.id).subscribe(() => {
         mascota.is_favorito = true;
+        this.AgregarFavAlert();
+        this.cdr.detectChanges();
       }, error => {
         console.error('Error al agregar favorito:', error);
       });
     }
   }
 
+  async AgregarFavAlert(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: '¡Listo!',
+      message: 'Mascota Agregada de favoritos',
+    });
+
+    await alert.present();
+    setTimeout(() => {
+      alert.dismiss().then(() => {
+      });
+    }, 800);
+
+  }
+
+  async EliminarFavAlert(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: '¡Listo!',
+      message: 'Mascota eliminada de favoritos',
+    });
+
+    await alert.present();
+    setTimeout(() => {
+      alert.dismiss().then(() => {
+      });
+    }, 800);
+  }
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, AlertController } from '@ionic/angular';
 import { PublicationService } from 'src/app/shared/services/publication.service';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle, IonButton } from '@ionic/angular/standalone';
 import { Mascota } from '../../Interfaces/mascota.interface';
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { FavoritoService } from 'src/app/shared/services/favorito.service';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
-import { environments } from 'src/environments/environment'; 
+import { environments } from 'src/environments/environment';
 
 
 @Component({
@@ -34,7 +34,8 @@ export class MascotaFavComponent implements OnInit {
   constructor(
     private publicationService: PublicationService,
     private authService: AuthService,
-    private favoritoService: FavoritoService
+    private favoritoService: FavoritoService,
+    private alertController: AlertController
   ) {
     // Registrar iconos
     addIcons({
@@ -44,7 +45,7 @@ export class MascotaFavComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.isLoggedIn()){
+    if (!this.isLoggedIn()) {
       window.location.href = `${environments.BASE_URL}/dashboard/`
     }
     this.obteneraMascotasFav();
@@ -69,12 +70,28 @@ export class MascotaFavComponent implements OnInit {
 
   toggleFavorito(mascota: Mascota) {
     this.favoritoService.removeFavorito(mascota.id).subscribe(() => {
+
       mascota.is_favorito = false;
-      this.mascotas = this.mascotas.filter(m => m.id !== mascota.id); // Remover de la lista de favoritos
-      this.cdr.detectChanges(); 
+      this.mascotas = this.mascotas.filter(m => m.id !== mascota.id);
+      this.EliminarFavAlert();
+      this.cdr.detectChanges();
     }, error => {
       console.error('Error al remover favorito:', error);
     });
+
+  }
+
+  async EliminarFavAlert(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: '¡Listo!',
+      message: 'Mascota eliminada de favoritos',
+    });
+
+    await alert.present();
+    setTimeout(() => {
+      alert.dismiss().then(() => {
+      });
+    }, 800);
 
   }
 }
