@@ -5,7 +5,6 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonRouterOutlet } from '@i
 import { User, Persona } from '../../interface';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { environments } from 'src/environments/environment';
 
 @Component({
   selector: 'app-editar-persona',

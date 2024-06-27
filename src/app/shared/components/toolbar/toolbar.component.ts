@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { IonicModule, } from '@ionic/angular';
 import { User, Persona } from 'src/app/auth/interface';
 import { CommonModule } from '@angular/common';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -40,12 +40,12 @@ export class ToolbarComponent implements OnInit {
   //TODO: arreglar la redirección para modificar perfil (actualizar información)
   toggleProfile() {
 
-    window.location.href = `${environments.BASE_URL}/auth/editar-persona`
+    window.location.href = `${environment.BASE_URL}/auth/editar-persona`
     this.toolBarService.toggleProfileIcon();
   }
   toggleProfileOrganization() {
 
-    window.location.href = `${environments.BASE_URL}/auth/editar-organizacion`
+    window.location.href = `${environment.BASE_URL}/auth/editar-organizacion`
     this.toolBarService.toggleProfileIcon();
   }
 

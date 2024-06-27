@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import { FavoritoService } from 'src/app/shared/services/favorito.service';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -46,7 +46,7 @@ export class MascotaFavComponent implements OnInit {
 
   ngOnInit() {
     if (!this.isLoggedIn()) {
-      window.location.href = `${environments.BASE_URL}/dashboard/`
+      window.location.href = `${environment.BASE_URL}/dashboard/`
     }
     this.obteneraMascotasFav();
   }

@@ -4,7 +4,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AlertController, IonicModule } from '@ionic/angular';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
 
 
@@ -75,7 +75,7 @@ export class ResetPasswordConfirm implements OnInit {
         confirm_new_password: formData.confirmNewPassword,
       };
 
-      this.http.post(`${environments.URL_USER}user/recuperar-confirmacion/`, data)
+      this.http.post(`${environment.URL_USER}user/recuperar-confirmacion/`, data)
         .subscribe({
           next: async (response) => {
             await this.CambioAlerta();
@@ -120,6 +120,6 @@ export class ResetPasswordConfirm implements OnInit {
 
   redirectToLogin() {
     console.log('redireccionando');
-    window.location.href = `${environments.BASE_URL}/auth/`;
+    window.location.href = `${environment.BASE_URL}/auth/`;
   }
 }

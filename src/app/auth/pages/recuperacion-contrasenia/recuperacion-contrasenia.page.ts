@@ -5,7 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/stan
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AlertController } from '@ionic/angular';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-recuperacion-contrasenia',
@@ -115,7 +115,7 @@ export class RecuperacionContraseniaPage implements OnInit {
 
   navigateToHome(): void {
     // Redirige a la página principal después de cerrar la alerta
-    window.location.href = `${environments.BASE_URL}`;
+    window.location.href = `${environment.BASE_URL}`;
     this.recuperarContrasenia.reset();
   }
 

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicationService {
-  private baseUrl = environments.URL_POST;
+  private baseUrl = environment.URL_POST;
 
   constructor(private http: HttpClient) { }
 

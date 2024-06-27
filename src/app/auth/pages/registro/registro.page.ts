@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginPage } from '../login/login.page';
 import { RegistroPersona } from '../../interface/register-response.interface';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { Persona, User } from '../../interface';
 import { AlertController } from '@ionic/angular';
 
@@ -65,7 +65,7 @@ export class RegistroPage implements OnInit {
       this.checkScreenWidth();
     });
     if (this.authService.isAuthenticated()) {
-      window.location.href = `${environments.BASE_URL}/dashboard/`
+      window.location.href = `${environment.BASE_URL}/dashboard/`
     }
   }
 
@@ -159,7 +159,7 @@ export class RegistroPage implements OnInit {
 
   navigateToHome(): void {
     // Redirige a la página principal después de cerrar la alerta
-    window.location.href = `${environments.BASE_URL}`;
+    window.location.href = `${environment.BASE_URL}`;
     this.formularioRegistro.reset();
   }
 }
