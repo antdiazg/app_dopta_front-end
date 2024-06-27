@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-card class="flex flex-col">
+    <div class="relative w-full" style="padding-top: 100%;">
+      <img class="absolute inset-0 w-full h-full object-cover" alt="Imagen de {{ mascota.nom_mascota }}"
+        [src]="mascota.foto ? mascota.foto : '../../../assets/icon/Logo_AppDopta.jpeg'" />
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>{{ mascota.especie }} - {{ mascota.edad }}</ion-card-subtitle>
+      <ion-card-title>{{ mascota.titulo | uppercase }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-subtitle>Nombre: {{ mascota.nom_mascota }}</ion-card-subtitle>
+      <ion-card-subtitle>Raza: {{ mascota.raza }}</ion-card-subtitle>
+      <ion-card-subtitle>Sexo: {{ mascota.sexo }}</ion-card-subtitle>
+      <ion-card-subtitle>Tamaño: {{ mascota.tamanio }}</ion-card-subtitle>
+      <ion-card-subtitle>Fecha de publicación: {{ mascota.fec_public | slice: 0:10 }} </ion-card-subtitle>
+      <p>{{ mascota.descripcion }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

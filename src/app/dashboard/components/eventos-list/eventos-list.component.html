@@ -1,0 +1,35 @@
+<section [ngClass]="{' md:mb-32  lg:mb-32': true}"></section>
+<div *ngIf="!currentUser.nombre" class="grid grid-cols-1">
+  <div class=" items-center w-screen">
+
+    <button (click)="navigateTo('dashboard/crear-evento')" class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full w-full mt-2 mb-2">
+      Publicar Evento
+    </button>
+
+  </div>
+</div>
+
+
+<ion-content >
+  <div class="mb-48 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+    <div *ngFor="let evento of eventos">
+      <ion-card class="flex flex-col">
+        <div class="relative w-full" style="padding-top: 100%;">
+          <img class="absolute inset-0 w-full h-full object-cover" alt="Imagen de {{ evento.titulo }}"
+            src="../../../../assets/icon/Logo_AppDopta.jpeg" />
+        </div>
+        <ion-card-header>
+          <ion-card-title>{{ evento.titulo | uppercase }}</ion-card-title>
+          <ion-card-subtitle>Nombre: {{ evento.nombre }}</ion-card-subtitle>
+          <ion-card-subtitle>Fecha de publicación: {{ evento.fec_public | slice: 0:10 }} </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content class="flex-grow flex flex-col items-center">
+          <button class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-4 w-48">
+            Ver Detalles del Evento
+          </button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>

@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { ToolbarComponent } from 'src/app/shared/components/toolbar/toolbar.component';
 import { EventosPage } from '../eventos/eventos.page';
 import { RouterOutlet } from '@angular/router';
+import { AdoptarPage } from '../adoptar/adoptar.page';
 
 @Component({
   selector: 'app-index',
@@ -22,6 +23,9 @@ import { RouterOutlet } from '@angular/router';
     IonicModule,
     ToolbarComponent,
     RouterOutlet,
+    EventosPage,
+    AdoptarPage
+
     ]
 })
 export class IndexPage  {

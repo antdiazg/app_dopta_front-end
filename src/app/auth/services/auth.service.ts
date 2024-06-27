@@ -1,8 +1,13 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable} from '@angular/core';
-import { LoginResponse } from '../interface';
-import { Observable, tap } from 'rxjs';
-import { RegistroPersona } from '../interface/register-response.interface';
+import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
+import { Injectable, computed, signal } from '@angular/core';
+import { LoginResponse, User } from '../interface';
+import { Observable, catchError, delay, map, tap, throwError } from 'rxjs';
+import { RegistroOrganizacion, RegistroPersona } from '../interface/register-response.interface';
+import { AuthStatus } from '../enums/auth-status.enum';
+import { environments } from 'src/environments/environment';
+import { Organizacion, Persona } from '../interface/user.interface';
+
+
 
 
 
@@ -11,47 +16,119 @@ import { RegistroPersona } from '../interface/register-response.interface';
 })
 export class AuthService {
 
-  private baseUrl = 'http://127.0.0.1:8000/';
-  constructor(private http: HttpClient){}
+  private baseUrl = environments.URL_USER;
 
-login(email: string, password: string): Observable<LoginResponse> {
-  const url = `${this.baseUrl}login/`;
-  const body = { email, password };
-  const headers = new HttpHeaders().set('Content-Type', 'application/json');
-  return this.http.post<LoginResponse>(url, body, { headers }).pipe(
-    tap(response => {
-      if(response && response.token){
-        localStorage.setItem('authToken', response.token);
-      }
-    })
-  );
-}
+  private _currentUser = signal<User | null>(null);
+  private _currentOrganizacion = signal<Organizacion | null>(null);
 
-logout(){
-  localStorage.removeItem('authToken');
-}
+  private _authStatus = signal<AuthStatus>(AuthStatus.checking);
 
-isAuthenticated(): boolean{
-  return !!localStorage.getItem('authToken');
-}
+  public currentUser = computed<User | null>(() => this._currentUser());
+  public currentOrganizacion = computed<Organizacion | null>(() => this._currentOrganizacion());
+  public authStatus = computed<AuthStatus>(() => this._authStatus());
 
-addPerson( persona : RegistroPersona): Observable<RegistroPersona> {
-  return this.http.post<RegistroPersona>(`${ this.baseUrl }persona/registro/`, persona);
-}
+  constructor(private http: HttpClient) { }
 
-//TODO: modificar para registrar organizacion
-addOrganization( persona : RegistroPersona): Observable<RegistroPersona> {
-  return this.http.post<RegistroPersona>(`${ this.baseUrl }persona/registro/`, persona);
-}
+  private setAuthentication(user: any, token: string): boolean {
+    this._authStatus.set(AuthStatus.authenticated);
+    this._currentUser.set(user);
+    localStorage.setItem('token-jwt', token);
+    return true;
+  }
 
-personExists(email: string): Observable<boolean> {
-  return this.http.get<boolean>(`${this.baseUrl}persona/existe?email=${email}`);
-}
+  setToken(token: string): boolean {
+    localStorage.setItem('token-jwt', token);
+    return true;
 
-passRecovery(email: string): Observable<string> {
+  }
+
+  login(email: string, password: string): Observable<LoginResponse> {
+    const url = `${this.baseUrl}user/login/`;
+    const body = { email, password };
+
+    return this.http.post<LoginResponse>(url, body).pipe(
+      tap((response: LoginResponse) => {
+        this.setAuthentication(response.user, response.access);
+        console.log(response.user, response.access);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.error('Login error:', error);
+        return throwError(error); // Reenviar el error para ser manejado en el componente
+      })
+    );
+  };
+
+
+  getProfile(): Observable<any> {
+    const url = `${this.baseUrl}user/perfil/`;
+    const token = localStorage.getItem('token-jwt');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(url, { headers }).pipe(
+      tap(response => {
+        console.log('User profile:', response);
+      }),
+      catchError(error => {
+        console.error('Profile error:', error);
+        return throwError(() => error);
+
+      })
+    )
+  }
+
+  updateUser(user: FormData): Observable<Persona> {
+    const url = `${this.baseUrl}user/perfil/`;
+    const token = localStorage.getItem('token-jwt');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<Persona>(url, user, { headers }).pipe(
+      tap(response => {
+        console.log('User updated:', response);
+      }),
+      catchError(error => {
+        console.error('Update error:', error);
+        return throwError(() => error);
+      })
+
+    );
+  }
+  updateOrganizacion(user: FormData): Observable<Organizacion> {
+    const url = `${this.baseUrl}user/perfil/`;
+    const token = localStorage.getItem('token-jwt');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put<Organizacion>(url, user, { headers }).pipe(
+      tap(response => {
+        console.log('User updated:', response);
+      }),
+      catchError(error => {
+        console.error('Update error:', error);
+        return throwError(() => error);
+      })
+
+    );
+  }
+
+
+  logout() {
+    localStorage.removeItem('token-jwt');
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token-jwt');
+  }
+
+  addPerson(persona: RegistroPersona): Observable<RegistroPersona> {
+    return this.http.post<RegistroPersona>(`${this.baseUrl}user/persona/registro/`, persona);
+  }
+
+  //TODO: modificar para registrar organizacion
+  addOrganization(organizacion: RegistroOrganizacion): Observable<RegistroOrganizacion> {
+    return this.http.post<RegistroOrganizacion>(`${this.baseUrl}user/organizacion/registro/`, organizacion);
+  }
+
+
+  passRecovery(email: string): Observable<string> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { email: email };
-    return this.http.post<string>(`${this.baseUrl}recuperar/`, body, { headers: headers });
+    return this.http.post<string>(`${this.baseUrl}user/recuperar/`, body, { headers: headers });
   }
 
 

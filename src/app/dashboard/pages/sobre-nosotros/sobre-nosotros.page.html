@@ -1,0 +1,43 @@
+<ion-content>
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div class="row-start-10 w-screen text-center">
+      <h1 class="text-4xl text-principal-grey-700 font-bold">Equipo AppDopta</h1>
+    </div>
+    <div class="row-start-13 row-span-2" *ngFor="let mascota of appDoptaTeam">
+      <div
+        class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
+        <a href="#">
+          <div class="aspect-w-1 aspect-h-1 ">
+            <img class="object-contain w-full h-100 rounded-t-lg"
+              [src]="mascota.foto ? mascota.foto : 'assets/icon/Logo_AppDopta.jpeg'"
+              alt="Imagen de {{ mascota.nombre }}" />
+          </div>
+        </a>
+        <div class="flex-grow p-5">
+          <p class="mb-2 font-bold text-gray-700 dark:text-gray-400">
+            {{mascota.cargo}}
+          </p>
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ mascota.nombre|
+            uppercase }}</h5>
+          <p class="mb-2 font-medium text-gray-700 dark:text-gray-400">
+            Nombre: {{ mascota.nombre }}
+          </p>
+
+          <p class="mb-2 font-medium text-gray-700 dark:text-gray-400">
+            Usuario: {{ mascota.usuario }}
+            <br>
+            Descripción:    {{ mascota.descripcion }}
+          </p>
+
+
+          <button
+          type="submit"
+          class="w-full py-3 bg-pricipal-grey-400 text-white rounded-full shadow-md hover:bg-pricipal-grey-400 transition duration-300"
+        >
+          Detalles
+        </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
