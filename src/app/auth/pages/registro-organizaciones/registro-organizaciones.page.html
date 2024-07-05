@@ -52,6 +52,9 @@
           <div class="mt-1">
             <input formControlName="telefono" id="telefono" name="telefono" type="number" required
               class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+            <div *ngIf="formularioRegistro.get('telefono')?.hasError('minlength')">
+              <p class="text-errors-red-300">Error: Por favor ingrese un Teléfono con 9 digitos.</p>
+            </div>
           </div>
         </div>
 
@@ -61,6 +64,9 @@
           <div class="mt-1">
             <input formControlName="telefono2" id="telefono2" name="telefono2" type="number" required
               class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+            <div *ngIf="formularioRegistro.get('telefono')?.hasError('minlength')">
+              <p class="text-errors-red-300">Error: Por favor ingrese un Teléfono con 9 digitos.</p>
+            </div>
           </div>
         </div>
 
@@ -142,23 +148,23 @@
             </div>
 
 
-  <div class="flex w-full">
-    <div class="w-5/6 pr-2">
-      <label for="numrut_org" class="block text-sm font-medium leading-6 text-principal-blue-400">Rut</label>
-      <input formControlName="numrut_org" id="numrut_org" name="numrut_org" type="text" autocomplete="numrut_org" required
-        class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
-    </div>
-    <p class="self-center"> - </p>
-    <div class="w-1/6 pl-2">
-      <label for="dv" class="block text-sm font-medium leading-6 text-principal-blue-400">DV</label>
-      <input
-      formControlName="dv"
-      maxlength="1"
-      id="dv" name="dv" type="text" autocomplete="dv" required
-        class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
-    </div>
+        <div class="flex w-full">
+          <div class="w-5/6 pr-2">
+            <label for="numrut_org" class="block text-sm font-medium leading-6 text-principal-blue-400">Rut</label>
+            <input formControlName="numrut_org" id="numrut_org" name="numrut_org" type="text" autocomplete="numrut_org" required
+              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+          </div>
+          <p class="self-center"> - </p>
+          <div class="w-1/6 pl-2">
+            <label for="dv" class="block text-sm font-medium leading-6 text-principal-blue-400">DV</label>
+            <input
+            formControlName="dv"
+            maxlength="1"
+            id="dv" name="dv" type="text" autocomplete="dv" required
+              class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+          </div>
 
-  </div>
+        </div>
 
 
             <div>
@@ -175,6 +181,9 @@
               <input formControlName="telefono" id="telefono" name="telefono" type="text" autocomplete="telefono"
                 required
                 class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+              <div *ngIf="formularioRegistro.get('telefono')?.hasError('minlength')">
+                <p class="text-errors-red-300">Error: Por favor ingrese un Teléfono con 9 digitos.</p>
+              </div>
             </div>
 
             <div>
@@ -183,6 +192,9 @@
               <input formControlName="telefono2" id="telefono2" name="telefono2" type="text" autocomplete="telefono2"
                 required
                 class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700" />
+              <div *ngIf="formularioRegistro.get('telefono')?.hasError('minlength')">
+                <p class="text-errors-red-300">Error: Por favor ingrese un Teléfono con 9 digitos.</p>
+              </div>
             </div>
 
             <div>

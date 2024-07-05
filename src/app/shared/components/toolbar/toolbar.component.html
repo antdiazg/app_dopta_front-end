@@ -3,8 +3,8 @@
     <ion-header>
       <ion-toolbar>
         <div class="flex items-center ml-2 justify-start">
-          <img class="flex" src="../../../../assets/icon/Logo_AppDopta.jpeg"
-          class="size-12 rounded-lg" alt="FlowBite Logo" />
+          <img class="flex" src="../../../../assets/icon/Logo_AppDopta.jpeg" class="size-12 rounded-lg"
+            alt="FlowBite Logo" />
           <h1 class="text-xl ml-2 font-bold">AppDopta</h1>
         </div>
       </ion-toolbar>
@@ -12,21 +12,10 @@
     <ion-content class="ion-padding">
       <ion-list>
 
-        <ion-menu-toggle>
-          <ion-item (click)="navigateTo('dashboard/crear-mascota')">
-            <ion-label>Publicar mascota</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
 
         <ion-menu-toggle>
           <ion-item (click)="navigateTo('dashboard/adoptar')">
             <ion-label>Adoptar</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle>
-          <ion-item (click)="navigateTo('dashboard/crear-evento')">
-            <ion-label>Publicar Evento</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
@@ -39,12 +28,6 @@
         <ion-menu-toggle>
           <ion-item (click)="navigateTo('dashboard/favoritos')">
             <ion-label>Favoritos</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-
-        <ion-menu-toggle>
-          <ion-item (click)="navigateTo('dashboard/crear-servicio')">
-            <ion-label>Publicar Servicio</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
@@ -68,6 +51,46 @@
 
       </ion-list>
     </ion-content>
+    <!-- <ion-footer>
+      <ion-toolbar>
+        
+        <ion-avatar slot="start">
+          <img [src]="currentUser.imagen_perfil || defaultImageURL" [alt]="currentUser.nombre">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ currentUser.user.username }}</h2>
+
+        </ion-label>
+      </ion-toolbar>
+    </ion-footer> -->
+
+    <ion-footer>
+      <ion-toolbar>
+        <ng-container *ngIf="currentUser; else notLoggedIn">
+          <ion-avatar slot="start" class="avatar-clickable">
+            <img [src]="currentUser.imagen_perfil" alt="User Image">
+          </ion-avatar>
+          <ion-label *ngIf="currentUser.nombre; else showUsername">
+            <p><a (click)="toggleProfile()">
+                <h2>{{ currentUser.nombre }}</h2>
+              </a></p>
+          </ion-label>
+          <ng-template #showUsername>
+            <ion-label>
+              <p><a (click)="toggleProfileOrganization()">
+                  <h2>{{ currentUser.user.username }}</h2>
+                </a></p>
+            </ion-label>
+          </ng-template>
+        </ng-container>
+        <ng-template #notLoggedIn>
+          <ion-label>
+            <p><a href="auth/"> Login</a> | <a href="auth/registro">Registro</a></p>
+          </ion-label>
+        </ng-template>
+      </ion-toolbar>
+    </ion-footer>
+
   </ion-menu>
   <div class="ion-page" id="main-content">
     <ion-header>
@@ -77,8 +100,8 @@
         </ion-buttons>
         <div class="flex items-center mr-14 justify-center">
           <h1 class="text-xl mr-2 font-bold">AppDopta</h1>
-          <img class="flex" src="../../../../assets/icon/Logo_AppDopta.jpeg"
-            class="size-12 rounded-lg" alt="FlowBite Logo" />
+          <img class="flex" src="../../../../assets/icon/Logo_AppDopta.jpeg" class="size-12 rounded-lg"
+            alt="FlowBite Logo" />
         </div>
       </ion-toolbar>
     </ion-header>
@@ -105,12 +128,12 @@
 
           <div
             class="ml-8 flex items-center justify-between text-principal-grey-400 font-semibold sm:flex-wrap md:flex-nowrap xl:flex-nowrap">
-            <a href="dashboard/crear-mascota" class="px-4 hover:text-principal-grey-700">Publicar mascota</a>
+            <!-- <a href="dashboard/crear-mascota" class="px-4 hover:text-principal-grey-700">Publicar mascota</a> -->
             <a href="dashboard/adoptar" class="px-4 hover:text-principal-grey-700">Adoptar</a>
-            <a href="dashboard/crear-evento" class="px-4 hover:text-principal-grey-700">Publicar eventos</a>
+            <!-- <a href="dashboard/crear-evento" class="px-4 hover:text-principal-grey-700">Publicar eventos</a> -->
             <a href="dashboard/eventos" class="px-4 hover:text-principal-grey-700">Eventos</a>
             <a href="dashboard/favoritos" class="px-4 hover:text-principal-grey-700">Favoritos</a>
-            <a href="dashboard/crear-servicio" class="px-4 hover:text-principal-grey-700">Publicar servicio</a>
+            <!-- <a href="dashboard/crear-servicio" class="px-4 hover:text-principal-grey-700">Publicar servicio</a> -->
             <a href="dashboard/mapa-servicios" class="px-4 hover:text-principal-grey-700">Servicios</a>
             <a href="dashboard/sobre-nosotros" class="px-4 hover:text-principal-grey-700">Sobre nosotros</a>
             <a href="dashboard/contacto" class="px-4 hover:text-principal-grey-700">Contacto</a>
@@ -127,8 +150,9 @@
                 <span class="sr-only">Open user menu</span>
                 <div class="flex items-center justify-center rounded-full bg-principal-grey-400"
                   style="width: 50px; height: 50px;">
-                  <img class="rounded-full" [src]="currentUser.imagen_perfil" [alt]="currentUser.nombre"
-                    style="width: 40px; height: 40px;"> <!--TODO:AJUSTAR PARA QUE SE VEA FOTO DE PERFIL-->
+                  <img class="rounded-full" [src]="currentUser.imagen_perfil || defaultImageURL"
+                    [alt]="currentUser.nombre" style="width: 40px; height: 40px;">
+                  <!--TODO:AJUSTAR PARA QUE SE VEA FOTO DE PERFIL-->
                 </div>
               </button>
             </div>
@@ -151,21 +175,21 @@
               <ul class="py-4" role="none">
                 <li class="rounded-lg py-2 my-2 grid grid-rows-2 gap-4">
                   <div *ngIf="currentUser?.nombre; else isOrganization ">
-                  <span class="text-sm rounded-lg py-1 px-2 cursor-pointer hover:bg-principal-grey-700"
-                    (click)="toggleProfile()">
-                    <i class="fa-solid fa-gear"></i>
-                    configuraciones
-                  </span>
+                    <span class="text-sm rounded-lg py-1 px-2 cursor-pointer hover:bg-principal-grey-700"
+                      (click)="toggleProfile()">
+                      <i class="fa-solid fa-gear"></i>
+                      configuraciones
+                    </span>
                   </div>
 
                   <ng-template #isOrganization>
-                  <span class="text-sm rounded-lg py-1 px-2 cursor-pointer hover:bg-principal-grey-700"
-                    (click)="toggleProfileOrganization()">
-                    <i class="fa-solid fa-gear"></i>
-                    configuraciones organización
-                  </span>
+                    <span class="text-sm rounded-lg py-1 px-2 cursor-pointer hover:bg-principal-grey-700"
+                      (click)="toggleProfileOrganization()">
+                      <i class="fa-solid fa-gear"></i>
+                      configuraciones organización
+                    </span>
                   </ng-template>
-                  
+
                   <span class="text-sm rounded-lg py-1 px-2 cursor-pointer hover:bg-principal-grey-700"
                     (click)="onLogout()">
                     <i class="fa-solid fa-right-from-bracket"></i>

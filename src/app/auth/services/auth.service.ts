@@ -58,6 +58,7 @@ export class AuthService {
     );
   };
 
+
   getProfile(): Observable<any> {
     const url = `${this.baseUrl}user/perfil/`;
     const token = localStorage.getItem('token-jwt');

@@ -83,9 +83,14 @@
             id="telefono"
             name="telefono"
             type="text"
+            pattern="[0-9]{9}"
+            minlength="9"
             required
             class="block w-72 pl-2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
+          <div *ngIf="formularioRegistro.get('telefono')?.hasError('minlength')">
+              <p class="text-errors-red-300">Error: Por favor ingrese un Teléfono con 9 digitos.</p>
+          </div>
         </div>
       </div>
 
@@ -311,6 +316,9 @@
               required
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
             />
+            <div *ngIf="formularioRegistro.get('telefono')?.hasError('minlength')">
+              <p class="text-errors-red-300">Error: Por favor ingrese un Teléfono con 9 digitos.</p>
+            </div>
           </div>
 
           <!-- <div>
@@ -347,18 +355,18 @@
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700"
             />
           </div>
-          
+
           <div >
-            <label 
+            <label
               for="fec_nac"
               class="block text-sm font-medium leading-6 text-principal-blue-400">
               Fecha de Nacimiento</label
               >
-            <input 
-              formControlName="fec_nac" 
+            <input
+              formControlName="fec_nac"
               id="fec_nac"
-              name="fec_nac" 
-              type="date" 
+              name="fec_nac"
+              type="date"
               required
               class="block w-full rounded-md border-pricipal-grey-400 border-2 shadow-sm py-2 px-3 focus:ring-pricipal-grey-400 focus:border-principal-grey-700">
           </div>

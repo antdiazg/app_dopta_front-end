@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonCardSubtitle, IonCardContent, IonCardTitle, IonCardHeader, IonCard } from '@ionic/angular/standalone';
@@ -6,7 +6,7 @@ import { Servicio } from '../../Interfaces/servicio.interface';
 import { Router } from '@angular/router';
 import { PublicationService } from '../../../shared/services/publication.service';
 import { AuthService } from '../../../auth/services/auth.service';
-import { Organizacion } from 'src/app/auth/interface';
+import { Organizacion, Persona } from 'src/app/auth/interface';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -20,6 +20,8 @@ export class ServiciosListPage implements OnInit {
 
   servicios : Servicio[] = [];
   public organizacion : Organizacion[] = [];
+  public currentUser! : Persona;
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   private router: Router = inject(Router);
 
   constructor(
@@ -29,6 +31,7 @@ export class ServiciosListPage implements OnInit {
 
   ngOnInit() {
     this.obtenerServicios();
+    this.loadUserProfile();
   }
 
   obtenerServicios(){
@@ -41,6 +44,21 @@ export class ServiciosListPage implements OnInit {
     this.router.navigate([page]);
   }
 
-
+  loadUserProfile() {
+    this.authService.getProfile().subscribe(
+      response => {
+        if (response && response.user && response.user.username) {
+          console.log({ response });
+          this.currentUser = response;
+          this.cdr.markForCheck(); // Forzar la detección de cambios
+        } else {
+          console.error('Invalid user profile response', response);
+        }
+      },
+      error => {
+        console.error('Error fetching user profile', error);
+      }
+    );
+  }
 
 }

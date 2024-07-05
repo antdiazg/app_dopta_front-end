@@ -1,5 +1,5 @@
 <section [ngClass]="{' md:mb-32  lg:mb-32': true}"></section>
-<div *ngIf="isLoggedIn()" class="grid grid-cols-1">
+<div *ngIf="!currentUser.nombre" class="grid grid-cols-1">
   <div class=" items-center w-screen">
 
     <button (click)="navigateTo('dashboard/crear-evento')" class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full w-full mt-2 mb-2">
@@ -15,6 +15,8 @@
     <div *ngFor="let evento of eventos">
       <ion-card class="flex flex-col">
         <div class="relative w-full" style="padding-top: 100%;">
+          <img class="absolute inset-0 w-full h-full object-cover" alt="Imagen de {{ evento.titulo }}"
+            src="../../../../assets/icon/Logo_AppDopta.jpeg" />
         </div>
         <ion-card-header>
           <ion-card-title>{{ evento.titulo | uppercase }}</ion-card-title>
