@@ -1,11 +1,51 @@
 <section [ngClass]="{'md:mb-32 lg:mb-32': true}"></section>
-<div *ngIf="isLoggedIn()" class="grid grid-cols-1">
-  <div class="items-center w-screen">
-    <button (click)="navigateTo('dashboard/crear-mascota')" class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full w-full mt-2 mb-2">
-      Publicar Mascota
-    </button>
+<section>
+  <div class="flex justify-between items-center px-4">
+    <div>
+      <button (click)="toggleFiltros()" class="text-blue-400 hover:text-blue-600 py-2 px-4 rounded-full mt-2 mb-2">
+        <ion-icon [name]="mostrarFiltros ? 'close-outline' : 'filter-outline'" class="text-lg"></ion-icon> {{
+        mostrarFiltros ? 'Cerrar Filtros' : 'Mostrar Filtros' }}
+      </button>
+    </div>
+    <div *ngIf="isLoggedIn()" class="items-center">
+      <button (click)="navigateTo('dashboard/crear-mascota')"
+        class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-2 mb-2">
+        Publicar Mascota
+      </button>
+    </div>
   </div>
-</div>
+
+  <div *ngIf="mostrarFiltros" class="grid grid-cols-1 bg-gray-100 p-8 mb-2">
+    <h2 class="text-lg font-semibold mb-2">Filtros</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="border border-gray-500 rounded-lg p-2">
+
+        <select id="especie" name="especie" [(ngModel)]="filtros.especie"
+          class="input-field block w-full py-2 px-3 rounded-md placeholder-gray-500 focus:outline-none">
+          <option value="" disabled selected class="text-gray-500 italic">Especie</option>
+          <option *ngFor="let opcion of opcionesEspecie" [value]="opcion">{{ opcion }}</option>
+        </select>
+      </div>
+      <div class="border border-gray-300 rounded-lg p-2">
+        <input type="text" id="raza" name="raza" [(ngModel)]="filtros.raza"
+          class="input-field block w-full py-2 px-3 rounded-md placeholder-gray-500 focus:outline-none"
+          placeholder="Raza" />
+      </div>
+      <div class="border border-gray-300 rounded-lg p-2">
+        <input type="text" id="sexo" name="sexo" [(ngModel)]="filtros.sexo"
+          class="input-field block w-full py-2 px-3 rounded-md placeholder-gray-500 focus:outline-none"
+          placeholder="Sexo" />
+      </div>
+
+      <div class="flex items-center">
+        <button class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-2 mr-2"
+          (click)="aplicarFiltros()">Aplicar Filtros</button>
+        <button class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-2 mr-2"
+          (click)="resetFiltros()">Limpiar Filtros</button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <ion-content>
   <div class="mb-48 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
@@ -21,7 +61,8 @@
               <ion-card-subtitle>{{ mascota.especie }} - {{ mascota.edad }}</ion-card-subtitle>
               <ion-card-title>{{ mascota.titulo | uppercase }}</ion-card-title>
             </div>
-            <button *ngIf="isLoggedIn()" (click)="toggleFavorito(mascota)" [class.text-red-500]="mascota.is_favorito" class="ml-4">
+            <button *ngIf="isLoggedIn()" (click)="toggleFavorito(mascota)" [class.text-red-500]="mascota.is_favorito"
+              class="ml-4">
               <ion-icon [name]="mascota.is_favorito ? 'heart' : 'heart-outline'" class="text-2xl"></ion-icon>
             </button>
           </div>
@@ -29,7 +70,8 @@
           <ion-card-subtitle>Fecha de publicación: {{ mascota.fec_public | slice: 0:10 }} </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content class="flex-grow flex flex-col items-center">
-          <button (click)="verDetalle(mascota)" class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-4 w-48">
+          <button (click)="verDetalle(mascota)"
+            class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-4 w-48">
             Ver Detalle
           </button>
         </ion-card-content>

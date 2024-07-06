@@ -3,6 +3,9 @@
     <div class="relative w-full" style="padding-top: 100%;">
       <img class="absolute inset-0 w-full h-full object-cover" alt="Imagen de {{ mascota.nom_mascota }}"
         [src]="mascota.foto ? mascota.foto : '../../../assets/icon/Logo_AppDopta.jpeg'" />
+      <button (click)="cerrarModal()" class="absolute top-0 right-0 m-2 ">
+        <ion-icon name="close" class="text-3xl"></ion-icon>
+      </button>
     </div>
     <ion-card-header>
       <ion-card-subtitle>{{ mascota.especie }} - {{ mascota.edad }}</ion-card-subtitle>

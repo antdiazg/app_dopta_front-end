@@ -2,12 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environments = {
+export const environment = {
+  production: false,
   BASE_URL: "http://localhost:8100",
   URL_USER: 'http://alb-appdoptauser-1760123330.us-east-1.elb.amazonaws.com/',
-  // URL_USER: 'http://127.0.0.1:8000/',
   URL_POST: 'http://alb-appdoptapost-245125318.us-east-1.elb.amazonaws.com/'
-  //URL_POST: 'http://127.0.0.1:8000/'
 };
 
 /*

@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { Organizacion } from '../../interface';
 import { AlertController } from '@ionic/angular';
 
@@ -65,7 +65,7 @@ export class RegistroOrganizacionesPage implements OnInit {
       this.checkScreenWidth();
     });
     if (this.authService.isAuthenticated()) {
-      window.location.href = `${environments.BASE_URL}/dashboard/`
+      window.location.href = `${environment.BASE_URL}/dashboard/`
     }
   }
 
@@ -157,7 +157,7 @@ export class RegistroOrganizacionesPage implements OnInit {
 
   navigateToHome(): void {
     // Redirige a la página principal después de cerrar la alerta
-    window.location.href = `${environments.BASE_URL}`;
+    window.location.href = `${environment.BASE_URL}`;
     this.formularioRegistro.reset();
   }
 }

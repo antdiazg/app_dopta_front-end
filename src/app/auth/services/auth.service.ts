@@ -4,7 +4,7 @@ import { LoginResponse, User } from '../interface';
 import { Observable, catchError, delay, map, tap, throwError } from 'rxjs';
 import { RegistroOrganizacion, RegistroPersona } from '../interface/register-response.interface';
 import { AuthStatus } from '../enums/auth-status.enum';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { Organizacion, Persona } from '../interface/user.interface';
 
 
@@ -16,7 +16,7 @@ import { Organizacion, Persona } from '../interface/user.interface';
 })
 export class AuthService {
 
-  private baseUrl = environments.URL_USER;
+  private baseUrl = environment.URL_USER;
 
   private _currentUser = signal<User | null>(null);
   private _currentOrganizacion = signal<Organizacion | null>(null);

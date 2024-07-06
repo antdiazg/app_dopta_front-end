@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonButton, IonHeader, IonTitle, IonToolbar, IonCard, IonLabel, IonItem, IonInput, IonRouterOutlet } from '@ionic/angular/standalone';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
     });
 
     if (this.authService.isAuthenticated()) {
-      window.location.href = `${environments.BASE_URL}/dashboard/`
+      window.location.href = `${environment.BASE_URL}/dashboard/`
     }
 
     this.checkScreenWidth();
@@ -155,7 +155,7 @@ export class LoginPage implements OnInit {
 
   navigateToHome(): void {
     // Redirige a la página principal después de cerrar la alerta
-    window.location.href = `${environments.BASE_URL}`;
+    window.location.href = `${environment.BASE_URL}`;
     this.formularioLogin.reset();
   }
 

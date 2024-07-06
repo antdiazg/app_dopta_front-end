@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
+import { Mascota } from 'src/app/auth/interface/index'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicationService {
-  private baseUrl = environments.URL_POST;
+  private baseUrl = environment.URL_POST;
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +28,20 @@ export class PublicationService {
   obtenerMascotas(): Observable<any> {
     return this.http.get(`${this.baseUrl}mascotas/lista-publicaciones/`, { headers: this.getHeaders() });
   }
+  // ---
+  obtenerMascotasFiltradas(filtros: any): Observable<Mascota[]> {
+    let params = new HttpParams();
+
+    // Iterar sobre los filtros y añadirlos como parámetros
+    for (const key in filtros) {
+      if (filtros.hasOwnProperty(key) && filtros[key]) {
+        params = params.append(key, filtros[key]);
+      }
+    }
+
+    return this.http.get<Mascota[]>(`${this.baseUrl}mascotas/lista-publicaciones/`, { params });
+  }
+  // ---
 
   obtenerMascotaPorId(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}mascotas/lista-publicaciones/${id}/`, { headers: this.getHeaders() });

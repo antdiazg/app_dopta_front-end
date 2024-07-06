@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { environments } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritoService {
-  private apiUrl = environments.URL_POST;
+  private apiUrl = environment.URL_POST;
 
   constructor(private http: HttpClient) { }
 
