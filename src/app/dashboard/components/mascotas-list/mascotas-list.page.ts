@@ -33,7 +33,9 @@ export class MascotasListPage implements OnInit {
     usuario__username: ''
   };
   mostrarFiltros: boolean = false;
-  opcionesEspecie = ['Gato', 'Perro'];
+  especies: string[] = [];
+  razas: string[] = [];
+  sexos: string[] = [];
 
   private router: Router = inject(Router);
   public currentUser!: User;
@@ -63,35 +65,50 @@ export class MascotasListPage implements OnInit {
     this.publicationService.obtenerMascotas().subscribe((data: any) => {
       this.mascotas = data;
       this.filteredMascotas = data;
-      console.log('Mascotas listadas:', this.mascotas);  // Mostrar en consola los datos de las tarjetas listadas
+      console.log('Mascotas listadas:', this.mascotas);
+      this.obtenerOpcionesUnicas();
     });
+  }
+  obtenerOpcionesUnicas() {
+    const especiesSet = new Set<string>();
+    const razasSet = new Set<string>();
+    const sexosSet = new Set<string>();
+
+    this.mascotas.forEach(mascota => {
+      especiesSet.add(this.initCap(mascota.especie));
+      razasSet.add(this.initCap(mascota.raza));
+      sexosSet.add(this.initCap(mascota.sexo));
+    });
+
+    this.especies = Array.from(especiesSet);
+    this.razas = Array.from(razasSet);
+    this.sexos = Array.from(sexosSet);
+
+    this.ordenarOpciones();
+  }
+
+  ordenarOpciones() {
+    this.especies.sort();
+    this.razas.sort();
+    this.sexos.sort();
+  }
+
+  initCap(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
   aplicarFiltros() {
     let mascotasFiltradas = this.mascotas;
 
-    if (this.filtros.titulo) {
-      mascotasFiltradas = mascotasFiltradas.filter(mascota => mascota.titulo.toLowerCase().includes(this.filtros.titulo.toLowerCase()));
-    }
-
     if (this.filtros.especie) {
       mascotasFiltradas = mascotasFiltradas.filter(mascota => mascota.especie.toLowerCase().includes(this.filtros.especie.toLowerCase()));
     }
-
     if (this.filtros.raza) {
       mascotasFiltradas = mascotasFiltradas.filter(mascota => mascota.raza.toLowerCase().includes(this.filtros.raza.toLowerCase()));
     }
-
     if (this.filtros.sexo) {
       mascotasFiltradas = mascotasFiltradas.filter(mascota => mascota.sexo.toLowerCase().includes(this.filtros.sexo.toLowerCase()));
     }
-
-    if (this.filtros.usuario__username) {
-      mascotasFiltradas = mascotasFiltradas.filter(mascota => mascota.usuario.username.toLowerCase().includes(this.filtros.usuario__username.toLowerCase()));
-    }
-
-    // Aplicar más filtros según los campos que tengas en el objeto filtros
-
     this.filteredMascotas = mascotasFiltradas;
     this.toggleFiltros();
   }
@@ -102,14 +119,12 @@ export class MascotasListPage implements OnInit {
 
   resetFiltros() {
     this.filtros = {
-      titulo: '',
       especie: '',
       raza: '',
       sexo: '',
-      usuario__username: ''
-      // Agrega aquí más campos según los filtros que tengas en el backend
     };
     this.filteredMascotas = this.mascotas;
+    this.toggleFiltros();
   }
 
   isLoggedIn(): boolean {

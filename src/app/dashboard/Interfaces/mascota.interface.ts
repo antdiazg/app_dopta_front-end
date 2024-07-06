@@ -30,3 +30,9 @@ export interface MascotaInput {
     foto: string;
 
 }
+
+export interface MascotaFiltro {
+    especie: string;
+    raza: string;
+    sexo: string;
+  }
