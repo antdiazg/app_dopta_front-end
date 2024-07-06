@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [IonContent, IonicModule, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class ResetPasswordConfirm implements OnInit {
+export class RecuPassConfirmPage implements OnInit {
   resetPasswordForm: FormGroup;
   email: string = '';
   token: string = '';
