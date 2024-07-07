@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, } from '@ionic/angular';
 import { Mascota } from 'src/app/dashboard/Interfaces/mascota.interface';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonButton, IonButtons, IonIcon, IonToolbar, IonHeader, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCardContent, IonCard, IonTitle } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
@@ -29,7 +30,10 @@ import { close } from 'ionicons/icons';
 export class DetalleMascotaComponent implements OnInit {
   @Input() mascota!: Mascota;
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(
+    private modalCtrl: ModalController,
+    private authService: AuthService
+  ) {
     addIcons({
       'close': close,
     });
@@ -40,4 +44,9 @@ export class DetalleMascotaComponent implements OnInit {
   cerrarModal() {
     this.modalCtrl.dismiss();
   }
+
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
 }
