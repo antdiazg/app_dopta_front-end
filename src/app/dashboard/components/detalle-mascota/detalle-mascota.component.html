@@ -18,6 +18,13 @@
       <ion-card-subtitle>Tamaño: {{ mascota.tamanio }}</ion-card-subtitle>
       <ion-card-subtitle>Fecha de publicación: {{ mascota.fec_public | slice: 0:10 }} </ion-card-subtitle>
       <p>{{ mascota.descripcion }}</p>
+      <!-- Botón de Contactar -->
+      <ng-container *ngIf="isLoggedIn()">
+        <a href="mailto:{{ mascota.usuario.email }}?Subject={{ mascota.titulo }}&body=Vi tu publicacion en AppDopta sobre el {{ mascota.especie }} llamado {{ mascota.nom_mascota }}" 
+           class="mt-4 inline-block text-center bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full">
+          Contactar
+        </a>
+      </ng-container>
     </ion-card-content>
   </ion-card>
 </ion-content>
