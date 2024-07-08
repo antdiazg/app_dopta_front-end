@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, AlertController } from '@ionic/angular';
+import { IonicModule, AlertController, ModalController } from '@ionic/angular';
 import { PublicationService } from 'src/app/shared/services/publication.service';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonCardSubtitle, IonButton } from '@ionic/angular/standalone';
 import { Mascota } from '../../Interfaces/mascota.interface';
@@ -12,6 +12,8 @@ import { FavoritoService } from 'src/app/shared/services/favorito.service';
 import { addIcons } from 'ionicons';
 import { heart, heartOutline } from 'ionicons/icons';
 import { environment } from 'src/environments/environment';
+import { DetalleMascotaComponent } from 'src/app/dashboard/components/detalle-mascota/detalle-mascota.component';
+
 
 
 @Component({
@@ -30,6 +32,8 @@ export class MascotaFavComponent implements OnInit {
   private router: Router = inject(Router);
   public currentUser!: User;
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private modalCtrl: ModalController = inject(ModalController);
+
 
   constructor(
     private publicationService: PublicationService,
@@ -94,4 +98,15 @@ export class MascotaFavComponent implements OnInit {
     }, 800);
 
   }
+
+  async verDetalle(mascota: Mascota) {
+    const modal = await this.modalCtrl.create({
+      component: DetalleMascotaComponent,
+      componentProps: {
+        mascota: mascota
+      }
+    });
+    await modal.present();
+  }
+
 }

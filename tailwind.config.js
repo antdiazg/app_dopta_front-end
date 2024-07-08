@@ -13,7 +13,8 @@ module.exports = {
       'indigo-700': 'rgb(67 56 202)',
       'white': '#ffffff',
       'blue-500': 'rgb(59 130 246)',
-      'errors-red-300': '#ff9898'
+      'errors-red-300': '#ff9898',
+      'red-fav':'#EC352C'
 
     },
     extend: {

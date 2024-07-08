@@ -14,14 +14,15 @@
               <ion-card-title>{{ mascota.titulo | uppercase }}</ion-card-title>
             </div>
             <button *ngIf="isLoggedIn()" (click)="toggleFavorito(mascota)" [class.text-red-500]="mascota.is_favorito" class="ml-4">
-              <ion-icon [name]="mascota.is_favorito ? 'heart' : 'heart-outline'" class="text-2xl"></ion-icon>
+              <ion-icon name="heart" class="text-3xl text-red-fav"></ion-icon>
             </button>
           </div>
           <ion-card-subtitle>Nombre: {{ mascota.nom_mascota }}</ion-card-subtitle>
           <ion-card-subtitle>Fecha de publicación: {{ mascota.fec_public | slice: 0:10 }} </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content class="flex-grow flex flex-col items-center">
-          <button class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-4 w-48">
+          <button (click)="verDetalle(mascota)"
+            class="bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full mt-4 w-48">
             Ver Detalle
           </button>
         </ion-card-content>

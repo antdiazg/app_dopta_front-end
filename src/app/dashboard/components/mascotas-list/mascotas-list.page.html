@@ -65,7 +65,7 @@
             </div>
             <button *ngIf="isLoggedIn()" (click)="toggleFavorito(mascota)" [class.text-red-500]="mascota.is_favorito"
               class="ml-4">
-              <ion-icon [name]="mascota.is_favorito ? 'heart' : 'heart-outline'" class="text-2xl"></ion-icon>
+              <ion-icon [name]="'heart'" [class]="mascota.is_favorito ? 'text-3xl text-red-fav' : 'text-2xl text-pricipal-grey-400'"></ion-icon>
             </button>
           </div>
           <ion-card-subtitle>Nombre: {{ mascota.nom_mascota }}</ion-card-subtitle>
