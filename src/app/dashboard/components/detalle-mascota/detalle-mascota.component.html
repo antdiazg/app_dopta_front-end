@@ -1,27 +1,27 @@
 <ion-content>
-  <ion-card class="flex flex-col">
-    <div class="relative w-full" style="padding-top: 100%;">
-      <img class="absolute inset-0 w-full h-full object-cover" alt="Imagen de {{ mascota.nom_mascota }}"
+  <ion-card class="flex flex-col items-center rounded-lg shadow-lg overflow-hidden">
+    <button (click)="cerrarModal()" class="absolute top-0 right-0 m-2 text-white bg-principal-blue-400 hover:bg-errors-red-300 rounded-full p-1 shadow-md">
+      <ion-icon name="close" class="text-2xl"></ion-icon>
+    </button>
+    <div class="relative w-48 h-48 mt-4">
+      <img class="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-md" alt="Imagen de {{ mascota.nom_mascota }}"
         [src]="mascota.foto ? mascota.foto : '../../../assets/icon/Logo_AppDopta.jpeg'" />
-      <button (click)="cerrarModal()" class="absolute top-0 right-0 m-2 ">
-        <ion-icon name="close" class="text-3xl"></ion-icon>
-      </button>
     </div>
-    <ion-card-header>
-      <ion-card-subtitle>{{ mascota.especie }} - {{ mascota.edad }}</ion-card-subtitle>
-      <ion-card-title>{{ mascota.titulo | uppercase }}</ion-card-title>
+    <ion-card-header class="text-center mt-4">
+      <ion-card-subtitle class="text-lg font-semibold">{{ mascota.especie }} - {{ mascota.edad }}</ion-card-subtitle>
+      <ion-card-title class="text-xl font-bold">{{ mascota.titulo | uppercase }}</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      <ion-card-subtitle>Nombre: {{ mascota.nom_mascota }}</ion-card-subtitle>
-      <ion-card-subtitle>Raza: {{ mascota.raza }}</ion-card-subtitle>
-      <ion-card-subtitle>Sexo: {{ mascota.sexo }}</ion-card-subtitle>
-      <ion-card-subtitle>Tamaño: {{ mascota.tamanio }}</ion-card-subtitle>
-      <ion-card-subtitle>Fecha de publicación: {{ mascota.fec_public | slice: 0:10 }} </ion-card-subtitle>
-      <p>{{ mascota.descripcion }}</p>
+    <ion-card-content class="p-4">
+      <ion-card-subtitle class="text-md font-medium">Nombre: {{ mascota.nom_mascota }}</ion-card-subtitle>
+      <ion-card-subtitle class="text-md font-medium">Raza: {{ mascota.raza }}</ion-card-subtitle>
+      <ion-card-subtitle class="text-md font-medium">Sexo: {{ mascota.sexo }}</ion-card-subtitle>
+      <ion-card-subtitle class="text-md font-medium">Tamaño: {{ mascota.tamanio }}</ion-card-subtitle>
+      <ion-card-subtitle class="text-md font-medium">Fecha de publicación: {{ mascota.fec_public | slice: 0:10 }} </ion-card-subtitle>
+      <p class="mt-4 text-gray-700">{{ mascota.descripcion }}</p>
       <!-- Botón de Contactar -->
       <ng-container *ngIf="isLoggedIn()">
         <a href="mailto:{{ mascota.usuario.email }}?Subject={{ mascota.titulo }}&body=Vi tu publicacion en AppDopta sobre el {{ mascota.especie }} llamado {{ mascota.nom_mascota }}" 
-           class="mt-4 inline-block text-center bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full">
+           class="mt-4 inline-block text-center bg-principal-blue-400 hover:bg-principal-blue-600 text-white py-2 px-4 rounded-full shadow-lg">
           Contactar
         </a>
       </ng-container>
