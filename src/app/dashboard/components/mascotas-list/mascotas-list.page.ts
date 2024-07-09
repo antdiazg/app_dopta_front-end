@@ -117,6 +117,7 @@ export class MascotasListPage implements OnInit {
     this.mostrarFiltros = !this.mostrarFiltros;
   }
 
+
   resetFiltros() {
     this.filtros = {
       especie: '',

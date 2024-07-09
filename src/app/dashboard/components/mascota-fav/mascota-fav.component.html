@@ -1,6 +1,6 @@
 <section [ngClass]="{'md:mb-32 lg:mb-32': true}"></section>
 <ion-content>
-  <div class="mb-48 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  <div *ngIf="mascotas.length > 0; else noMascotas" class="mb-48 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
     <div *ngFor="let mascota of mascotas">
       <ion-card class="flex flex-col">
         <div class="relative w-full" style="padding-top: 100%;">
@@ -29,4 +29,11 @@
       </ion-card>
     </div>
   </div>
+  <ng-template #noMascotas>
+    <div class="flex justify-center p-4 items-start h-full">
+      <div class="bg-red-fav  p-4 rounded-lg shadow-lg">
+        <p class="text-white text-center text-2xl ">No se han agregado publicaciones a favoritos.</p>
+      </div>
+    </div>
+  </ng-template>
 </ion-content>
