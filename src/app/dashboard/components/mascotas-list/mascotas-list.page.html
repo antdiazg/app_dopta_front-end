@@ -5,7 +5,7 @@
       <button (click)="toggleFiltros()" class="text-blue-400 hover:text-blue-600 py-2 px-4 rounded-full mt-2 mb-2">
         <ion-icon [name]="'filter-outline'" [ngClass]="{'transform rotate-x-180': mostrarFiltros}"
           class="text-lg transition-transform duration-300"></ion-icon>
-        {{ mostrarFiltros ? 'Mostrar Filtros' : 'Cerrar Filtros' }}
+        {{ mostrarFiltros ? 'Cerrar Filtros' :'Mostrar Filtros' }}
       </button>
     </div>
     <div *ngIf="isLoggedIn()" class="items-center">
